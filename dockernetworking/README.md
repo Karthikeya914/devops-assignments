@@ -56,13 +56,17 @@ All connectivity tests were successful, confirming that the containers could com
 
 ### Evidence
 
-![Docker Containers](Screenshots/01-task1-docker-ps.png)
+<img width="2484" height="372" alt="image" src="https://github.com/user-attachments/assets/ff811e07-f70c-4374-aeee-f1be757ddf66" />
 
-![Docker Networks](Screenshots/02-task1-network-ls.png)
 
-![Backend Networks](Screenshots/03-task1-backend-networks.png)
+<img width="1272" height="286" alt="image" src="https://github.com/user-attachments/assets/b5b3f064-2ea1-4c53-b381-2889e3119e7d" />
 
-![Connectivity Tests](Screenshots/04-task1-connectivity.png)
+
+<img width="1526" height="162" alt="image" src="https://github.com/user-attachments/assets/b47a217d-a969-4939-a2ae-7f0726f9f158" />
+
+
+<img width="1324" height="766" alt="image" src="https://github.com/user-attachments/assets/a58153d0-d01d-4621-b321-641fa98b4384" />
+
 
 ---
 
@@ -104,7 +108,8 @@ The output was:
 
 ### Evidence
 
-![Apache Host Network](Screenshots/05-task2-apache-host.png)
+<img width="2580" height="306" alt="image" src="https://github.com/user-attachments/assets/43eced95-7946-4979-b019-b4fbfde700a4" />
+
 
 ---
 
@@ -138,7 +143,8 @@ docker run -d \
 
 ### Evidence
 
-![Initial Bind Mount](Screenshots/06-task3-bind-mount-original.png)
+<img width="1440" height="900" alt="Screenshot 2026-09-05 at 12 05 26 AM" src="https://github.com/user-attachments/assets/e6072784-c801-409b-af31-8b00b4faefc6" />
+
 
 ### File Modification
 
@@ -158,7 +164,8 @@ The browser was refreshed and displayed:
 
 **Hello students - Updated!**
 
-![Updated Bind Mount](Screenshots/07-task3-bind-mount-updated.png)
+<img width="1440" height="900" alt="Screenshot 2026-09-05 at 12 07 55 AM" src="https://github.com/user-attachments/assets/41de7e8e-47dc-47cf-89ac-865687af5a8f" />
+
 
 This confirmed that changes made to the host file were reflected inside the running container through the bind mount.
 
