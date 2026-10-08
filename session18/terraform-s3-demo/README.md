@@ -1,256 +1,112 @@
-# Terraform S3 Bucket Demo
+# Terraform S3 Demo
 
-## Project Structure
+This project creates an AWS S3 bucket using Terraform. Below are the execution logs demonstrating the complete lifecycle (init, format, validate, plan, apply, show, output, and destroy).
 
-```text
-terraform-s3-demo/
-|
-|-- README.md
-|-- terraform.tf
-|-- providers.tf
-|-- variables.tf
-|-- terraform.tfvars
-|-- main.tf
-|-- outputs.tf
-|-- .gitignore
-```
-
-## Architecture
-
-```text
-terraform.tf
-     |
-     v
-Provider Configuration
-     |
-     v
-variables.tf
-     |
-     v
-terraform.tfvars
-     |
-     v
-main.tf
-     |
-     v
-aws_s3_bucket.demo
-     |
-     v
-AWS S3 Bucket
-     |
-     v
-outputs.tf
-```
-
-## Prerequisites
-
-Install:
-
-* Terraform
-* AWS CLI
-
-Configure AWS:
-
+## 1. terraform init
 ```bash
-aws configure
-```
+$ terraform init
 
-Verify:
+Initializing the backend...
 
-```bash
-aws sts get-caller-identity
-```
+Initializing provider plugins...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/aws v5.66.0...
+- Installed hashicorp/aws v5.66.0 (signed by HashiCorp)
 
-## Terraform Workflow
-
-### 1. Initialize
-
-```bash
-terraform init
-```
-
-Expected:
-
-```text
-Initializing the provider plugins...
 Terraform has been successfully initialized!
 ```
 
-### 2. Format
-
+## 2. terraform fmt & validate
 ```bash
-terraform fmt
-```
+$ terraform fmt
+main.tf
 
-### 3. Validate
-
-```bash
-terraform validate
-```
-
-Expected:
-
-```text
+$ terraform validate
 Success! The configuration is valid.
 ```
 
-### 4. Plan
-
+## 3. terraform plan
 ```bash
-terraform plan
-```
+$ terraform plan
 
-Expected:
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
 
-```text
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.devops553 will be created
+  + resource "aws_s3_bucket" "devops553" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "yatri1107"
+      + force_destroy               = true
+      + region                      = "ap-south-1"
+      + tags                        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "yatri1107"
+          + "Project"     = "Session18"
+        }
+    }
+
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
-### 5. Apply
-
+## 4. terraform apply
 ```bash
-terraform apply
-```
+$ terraform apply --auto-approve
 
-Terraform asks:
+aws_s3_bucket.devops553: Creating...
+aws_s3_bucket.devops553: Creation complete after 3s [id=yatri1107]
 
-```text
-Do you want to perform these actions?
-  Only 'yes' will be accepted to approve.
-Enter a value:
-```
-
-Enter:
-
-```text
-yes
-```
-
-Expected:
-
-```text
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
 Outputs:
-bucket_arn = "arn:aws:s3:::demo"
-bucket_name = "demo"
+
+bucket_arn = "arn:aws:s3:::yatri1107"
+bucket_name = "yatri1107"
 bucket_region = "ap-south-1"
 ```
 
-### 6. Check State
-
+## 5. terraform show & output
 ```bash
-terraform state list
+$ terraform show
+# aws_s3_bucket.devops553:
+resource "aws_s3_bucket" "devops553" {
+    arn                         = "arn:aws:s3:::yatri1107"
+    bucket                      = "yatri1107"
+    bucket_domain_name          = "yatri1107.s3.amazonaws.com"
+    bucket_regional_domain_name = "yatri1107.s3.ap-south-1.amazonaws.com"
+    force_destroy               = true
+    id                          = "yatri1107"
+    region                      = "ap-south-1"
+    tags                        = {
+        "Environment" = "dev"
+        "ManagedBy"   = "Terraform"
+        "Name"        = "yatri1107"
+        "Project"     = "Session18"
+    }
+    tags_all                    = {
+        "Environment" = "dev"
+        "ManagedBy"   = "Terraform"
+        "Name"        = "yatri1107"
+        "Project"     = "Session18"
+    }
+}
+
+$ terraform output
+bucket_arn = "arn:aws:s3:::yatri1107"
+bucket_name = "yatri1107"
+bucket_region = "ap-south-1"
 ```
 
-Expected:
-
-```text
-aws_s3_bucket.demo
-```
-
-Inspect the resource:
-
+## 6. terraform destroy
 ```bash
-terraform state show aws_s3_bucket.demo
-```
+$ terraform destroy --auto-approve
 
-### 7. Check Output
+aws_s3_bucket.devops553: Destroying... [id=yatri1107]
+aws_s3_bucket.devops553: Destruction complete after 2s
 
-```bash
-terraform output
-```
-
-Or:
-
-```bash
-terraform output bucket_name
-```
-
-Expected:
-
-```text
-"demo"
-```
-
-### 8. Verify Using AWS CLI
-
-```bash
-aws s3 ls
-```
-
-Or:
-
-```bash
-aws s3api head-bucket --bucket demo
-```
-
-### 9. Destroy
-
-After completing the demo:
-
-```bash
-terraform plan -destroy
-```
-
-Then:
-
-```bash
-terraform destroy
-```
-
-Enter:
-
-```text
-yes
-```
-
-Expected:
-
-```text
 Destroy complete! Resources: 1 destroyed.
-```
-
-## Complete Demo
-
-Run:
-
-```bash
-aws sts get-caller-identity
-terraform init
-terraform fmt
-terraform validate
-terraform plan
-terraform apply
-terraform output
-terraform state list
-terraform state show aws_s3_bucket.demo
-terraform plan -destroy
-terraform destroy
-```
-
-## Terraform Lifecycle
-
-```text
-              .tf files
-                  |
-                  v
-          terraform init
-                  |
-                  v
-          terraform validate
-                  |
-                  v
-            terraform plan
-                  |
-                  v
-           terraform apply
-                  |
-                  v
-             AWS S3
-                  |
-                  v
-          terraform state
-                  |
-                  v
-          terraform destroy
 ```
