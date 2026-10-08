@@ -9,21 +9,15 @@ This project builds an end-to-end cloud infrastructure using Terraform. It provi
 Below is the architecture deployed by this Terraform project:
 
 ```mermaid
-graph TD
-    subgraph AWS Cloud
-        subgraph VPC [VPC: 10.20.0.0/16]
-            IGW[Internet Gateway]
-            RT[Route Table]
-            
-            subgraph Public Subnet [Public Subnet: 10.20.1.0/24]
-                SG[Security Group<br>Allow HTTP/HTTPS]
-                EC2[EC2 Instance]
-            end
-        end
-        S3[S3 Bucket]
-    end
+graph LR
+    IGW[Internet Gateway] --> VPC[VPC]
+    VPC --> Subnet[Public Subnet]
+    Subnet --> SG[Security Group]
+    SG --> EC2[EC2 Instance]
+    EC2 -.-> S3[S3 Bucket]
+```
 
-    IGW --- RT
+--- RT
     RT --- Public Subnet
     SG --- EC2
     EC2 -.-> S3
