@@ -64,16 +64,20 @@ GitOps is a framework where the entire desired state of the system is stored in 
 
 ## 🚀 GitOps Demo (Argo CD)
 
-Below are the execution logs for implementing our GitOps demo using Kubernetes and Argo CD.
+
 
 ### 1. Create Cluster & Install Argo CD
-[INSERT SCREENSHOT 1 HERE]
+<img width="1440" height="900" alt="Screenshot 2026-10-08 at 8 15 13 PM" src="https://github.com/user-attachments/assets/b3f4e061-51a3-461c-88aa-0b12c0dd5985" />
+
 
 ### 2. Apply Argo CD Application
-[INSERT SCREENSHOT 2 HERE]
+<img width="1440" height="900" alt="Screenshot 2026-10-08 at 8 17 19 PM" src="https://github.com/user-attachments/assets/679b48f2-3cc7-48f6-ae8c-8e110a510684" />
+
 
 ### 3. Check Kubernetes Workloads
-[INSERT SCREENSHOT 3 HERE]
+<img width="1440" height="900" alt="Screenshot 2026-10-08 at 8 17 59 PM" src="https://github.com/user-attachments/assets/47d06847-489b-4928-ba22-068fafb61258" />
+
 
 ### 4. Demonstrate Self-Healing
-[INSERT SCREENSHOT 4 HERE]
+<img width="1440" height="900" alt="Screenshot 2026-10-08 at 8 18 25 PM" src="https://github.com/user-attachments/assets/d35493b7-721a-4ba7-893e-3ea459265d22" />
+
