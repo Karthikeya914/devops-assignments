@@ -8,9 +8,10 @@ This document contains the deliverables for Session 18, including the Terraform 
 
 Below are the execution logs demonstrating the complete lifecycle of creating an AWS S3 bucket using Terraform.
 
-![Terraform Output 1](terraform-1.png)
-![Terraform Output 2](terraform-2.png)
-![Terraform Output 3](terraform-3.png)
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/f4aaeff7-6a76-427b-bd46-fd7bc7ab3a35" />
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/b0a5b6c5-860c-4fbf-81c8-fcd401c20097" />
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/e40f86ce-3b52-45e2-8dc3-2cce6be689f5" />
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/f649e436-5960-4f64-9a4d-e5b3494bfece" />
 
 ---
 
