@@ -27,7 +27,6 @@ graph TD
     RT --- Public Subnet
     SG --- EC2
     EC2 -.-> S3
-```
 
 ---
 
@@ -37,7 +36,6 @@ graph TD
 
 <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/3c67189a-da40-4546-a56b-65d2e5e9cf1c" />
 
-```
 
 ### 2. Format & Validate (`terraform fmt` & `terraform validate`)
 
@@ -153,7 +151,6 @@ Terraform will perform the following actions:
     }
 
 Plan: 5 to add, 0 to change, 0 to destroy.
-```
 
 ### 4. Apply Infrastructure (`terraform apply`)
 ```bash
@@ -173,7 +170,6 @@ aws_route_table_association.public: Creating...
 aws_route_table_association.public: Creation complete after 1s [id=rtbassoc-0a1b2c3d4e5f6g7h8]
 
 Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
-```
 
 ### 5. Destroy Infrastructure (`terraform destroy`)
 ```bash
@@ -193,4 +189,3 @@ aws_vpc.main: Destroying... [id=vpc-0a1b2c3d4e5f6g7h8]
 aws_vpc.main: Destruction complete after 1s
 
 Destroy complete! Resources: 6 destroyed.
-```
