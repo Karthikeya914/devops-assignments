@@ -40,7 +40,10 @@ graph TD
 ```
 
 ### 2. Format & Validate (`terraform fmt` & `terraform validate`)
-<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/70cbd764-c54f-4936-9cbb-6291f5ec2f7c" />
+
+
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/12e38463-7c52-4bca-8f48-203ffe91221d" />
+
 
 ### 3. Generate Execution Plan (`terraform plan`)
 ```bash
