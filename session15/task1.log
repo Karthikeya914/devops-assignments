@@ -1,0 +1,82 @@
++ helm repo add bitnami https://charts.bitnami.com/bitnami
+"bitnami" already exists with the same configuration, skipping
++ helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈Happy Helming!⎈
++ helm search repo nginx
+NAME                            	CHART VERSION	APP VERSION	DESCRIPTION                                       
+bitnami/nginx                   	25.2.1       	1.31.6     	NGINX Open Source is a web server that can be a...
+bitnami/nginx-ingress-controller	12.0.7       	1.13.1     	NGINX Ingress Controller is an Ingress controll...
+bitnami/nginx-intel             	2.1.15       	0.4.9      	DEPRECATED NGINX Open Source for Intel is a lig...
++ helm create my-chart
+Creating my-chart
++ helm install my-release ./my-chart
+NAME: my-release
+LAST DEPLOYED: Thu Oct  8 16:04:07 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=my-chart,app.kubernetes.io/instance=my-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
++ helm list
+NAME      	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART         	APP VERSION
+my-release	default  	1       	2026-10-08 16:04:07.955598 +0530 IST	deployed	my-chart-0.1.0	1.16.0     
++ helm status my-release
+NAME: my-release
+LAST DEPLOYED: Thu Oct  8 16:04:07 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/ServiceAccount
+NAME                  AGE
+my-release-my-chart   0s
+
+==> v1/Service
+NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+my-release-my-chart   ClusterIP   10.102.140.230   <none>        80/TCP    0s
+
+==> v1/Deployment
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+my-release-my-chart   0/1     1            0           0s
+
+==> v1/Pod(related)
+NAME                                   READY   STATUS    RESTARTS   AGE
+my-release-my-chart-7b6bb865cb-bh55p   0/1     Pending   0          1s
+
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=my-chart,app.kubernetes.io/instance=my-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
++ helm upgrade my-release ./my-chart --set replicaCount=2
+Release "my-release" has been upgraded. Happy Helming!
+NAME: my-release
+LAST DEPLOYED: Thu Oct  8 16:04:09 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=my-chart,app.kubernetes.io/instance=my-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
++ helm history my-release
+REVISION	UPDATED                 	STATUS    	CHART         	APP VERSION	DESCRIPTION     
+1       	Thu Oct  8 16:04:07 2026	superseded	my-chart-0.1.0	1.16.0     	Install complete
+2       	Thu Oct  8 16:04:09 2026	deployed  	my-chart-0.1.0	1.16.0     	Upgrade complete
++ helm rollback my-release 1
+Rollback was a success! Happy Helming!
++ helm uninstall my-release
+release "my-release" uninstalled

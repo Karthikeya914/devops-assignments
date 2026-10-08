@@ -1,0 +1,244 @@
++ helm lint notes-chart
+==> Linting notes-chart
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
++ helm template notes-dev notes-chart
+---
+# Source: notes-chart/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notes-dev-config
+data:
+  APP_NAME: "notes-app"
+  ENVIRONMENT: "development"
+
+---
+# Source: notes-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes-dev-svc
+spec:
+  type: NodePort
+  selector:
+    app: notes-dev
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30090
+
+---
+# Source: notes-chart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-dev-deploy
+  labels:
+    app: notes-dev
+    environment: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-dev
+  template:
+    metadata:
+      labels:
+        app: notes-dev
+    spec:
+      containers:
+        - name: notes
+          image: "nginx:1.24"
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: notes-dev-config
++ helm install notes-dev notes-chart
+NAME: notes-dev
+LAST DEPLOYED: Thu Oct  8 16:06:01 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
++ sleep 5
++ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS        AGE
+app-blue-5c69d7785c-2759w            1/1     Running   2 (4m10s ago)   19d
+app-blue-5c69d7785c-nqkqd            1/1     Running   2 (4m10s ago)   19d
+app-blue-5c69d7785c-pg9zw            1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-5l7j9          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-6cv7n          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-6s2x7          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-89bjd          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-9bx6n          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-9nqbx          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-bvcxz          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-h28nz          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-vgbxr          1/1     Running   2 (4m10s ago)   19d
+app-canary-5849994497-z2k5t          1/1     Running   2 (4m10s ago)   19d
+app-green-84df7f978-k5zlw            1/1     Running   2 (4m10s ago)   19d
+app-green-84df7f978-st9mb            1/1     Running   2 (4m10s ago)   19d
+app-green-84df7f978-vr42q            1/1     Running   2 (4m10s ago)   19d
+app-recreate-7bd8d89b8b-6sjg9        1/1     Running   2 (4m10s ago)   19d
+app-recreate-7bd8d89b8b-d4zs6        1/1     Running   2 (4m10s ago)   19d
+app-recreate-7bd8d89b8b-p4kcv        1/1     Running   2 (4m10s ago)   19d
+app-rolling-56bff6d88c-bvg4m         1/1     Running   2 (4m10s ago)   19d
+app-rolling-56bff6d88c-hzz8p         1/1     Running   2 (4m10s ago)   19d
+app-rolling-56bff6d88c-qflc9         1/1     Running   2 (4m10s ago)   19d
+app-rolling-56bff6d88c-w8bv8         1/1     Running   2 (4m10s ago)   19d
+curl-client                          1/1     Running   4 (4m10s ago)   19d
+emptydir-demo                        1/1     Running   1 (4m10s ago)   19d
+headless-dns-client                  1/1     Running   4 (4m10s ago)   19d
+hostpath-demo                        1/1     Running   1 (4m10s ago)   19d
+hpa-demo-5d6676989b-ggqnj            1/1     Running   1 (4m10s ago)   19d
+notes-dev-deploy-74956bd987-mzpjs    1/1     Running   0               5s
+storage-demo                         1/1     Running   1 (4m10s ago)   19d
+web-app-clusterip-66865d4855-cwdcg   1/1     Running   2 (4m10s ago)   19d
+web-app-clusterip-66865d4855-g68lh   1/1     Running   2 (4m10s ago)   19d
+web-app-clusterip-66865d4855-klg5d   1/1     Running   2 (4m10s ago)   19d
+web-stateful-0                       1/1     Running   2 (4m10s ago)   19d
+web-stateful-1                       1/1     Running   2 (4m10s ago)   19d
+web-stateful-2                       1/1     Running   2 (4m10s ago)   19d
+yatri-backend-6c58cb99c7-cndk4       1/1     Running   2 (4m10s ago)   19d
+yatri-backend-6c58cb99c7-tc5sn       1/1     Running   2 (4m10s ago)   19d
+yatri-frontend-ddcfc4b5f-2pplw       1/1     Running   2 (4m10s ago)   19d
+yatri-frontend-ddcfc4b5f-trpq7       1/1     Running   2 (4m10s ago)   19d
++ kubectl get services
+NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+app-recreate-service     NodePort    10.105.197.160   <none>        80:30040/TCP   19d
+app-rolling-service      NodePort    10.105.140.232   <none>        80:30010/TCP   20d
+hpa-demo-service         ClusterIP   10.105.35.17     <none>        80/TCP         19d
+kubernetes               ClusterIP   10.96.0.1        <none>        443/TCP        20d
+myapp-canary-service     NodePort    10.103.151.84    <none>        80:30030/TCP   19d
+myapp-service            NodePort    10.108.102.214   <none>        80:30020/TCP   19d
+notes-dev-svc            NodePort    10.103.105.69    <none>        80:30090/TCP   6s
+web-service-clusterip    ClusterIP   10.100.126.26    <none>        8080/TCP       19d
+web-service-headless     ClusterIP   None             <none>        80/TCP         19d
+yatri-backend-service    ClusterIP   10.101.94.104    <none>        80/TCP         19d
+yatri-frontend-service   ClusterIP   10.109.13.250    <none>        80/TCP         19d
++ kubectl get configmaps
+NAME               DATA   AGE
+kube-root-ca.crt   1      20d
+notes-dev-config   2      7s
+yatri-app-config   5      19d
++ helm upgrade notes-dev notes-chart -f notes-chart/values-prod.yaml
+Release "notes-dev" has been upgraded. Happy Helming!
+NAME: notes-dev
+LAST DEPLOYED: Thu Oct  8 16:06:10 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
++ sleep 5
++ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS        AGE
+app-blue-5c69d7785c-2759w            1/1     Running             2 (4m17s ago)   19d
+app-blue-5c69d7785c-nqkqd            1/1     Running             2 (4m17s ago)   19d
+app-blue-5c69d7785c-pg9zw            1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-5l7j9          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-6cv7n          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-6s2x7          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-89bjd          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-9bx6n          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-9nqbx          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-bvcxz          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-h28nz          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-vgbxr          1/1     Running             2 (4m17s ago)   19d
+app-canary-5849994497-z2k5t          1/1     Running             2 (4m17s ago)   19d
+app-green-84df7f978-k5zlw            1/1     Running             2 (4m17s ago)   19d
+app-green-84df7f978-st9mb            1/1     Running             2 (4m17s ago)   19d
+app-green-84df7f978-vr42q            1/1     Running             2 (4m17s ago)   19d
+app-recreate-7bd8d89b8b-6sjg9        1/1     Running             2 (4m17s ago)   19d
+app-recreate-7bd8d89b8b-d4zs6        1/1     Running             2 (4m17s ago)   19d
+app-recreate-7bd8d89b8b-p4kcv        1/1     Running             2 (4m17s ago)   19d
+app-rolling-56bff6d88c-bvg4m         1/1     Running             2 (4m17s ago)   19d
+app-rolling-56bff6d88c-hzz8p         1/1     Running             2 (4m17s ago)   19d
+app-rolling-56bff6d88c-qflc9         1/1     Running             2 (4m17s ago)   19d
+app-rolling-56bff6d88c-w8bv8         1/1     Running             2 (4m17s ago)   19d
+curl-client                          1/1     Running             4 (4m17s ago)   19d
+emptydir-demo                        1/1     Running             1 (4m17s ago)   19d
+headless-dns-client                  1/1     Running             4 (4m17s ago)   19d
+hostpath-demo                        1/1     Running             1 (4m17s ago)   19d
+hpa-demo-5d6676989b-ggqnj            1/1     Running             1 (4m17s ago)   19d
+notes-dev-deploy-74956bd987-b7s8b    0/1     ContainerCreating   0               6s
+notes-dev-deploy-74956bd987-c28k5    0/1     ContainerCreating   0               6s
+notes-dev-deploy-74956bd987-mzpjs    1/1     Running             0               12s
+notes-dev-deploy-bbcc464b4-gt7vg     0/1     ContainerCreating   0               6s
+storage-demo                         1/1     Running             1 (4m17s ago)   19d
+web-app-clusterip-66865d4855-cwdcg   1/1     Running             2 (4m17s ago)   19d
+web-app-clusterip-66865d4855-g68lh   1/1     Running             2 (4m17s ago)   19d
+web-app-clusterip-66865d4855-klg5d   1/1     Running             2 (4m17s ago)   19d
+web-stateful-0                       1/1     Running             2 (4m17s ago)   19d
+web-stateful-1                       1/1     Running             2 (4m17s ago)   19d
+web-stateful-2                       1/1     Running             2 (4m17s ago)   19d
+yatri-backend-6c58cb99c7-cndk4       1/1     Running             2 (4m17s ago)   19d
+yatri-backend-6c58cb99c7-tc5sn       1/1     Running             2 (4m17s ago)   19d
+yatri-frontend-ddcfc4b5f-2pplw       1/1     Running             2 (4m17s ago)   19d
+yatri-frontend-ddcfc4b5f-trpq7       1/1     Running             2 (4m17s ago)   19d
++ helm history notes-dev
+REVISION	UPDATED                 	STATUS    	CHART            	APP VERSION	DESCRIPTION     
+1       	Thu Oct  8 16:06:01 2026	superseded	notes-chart-0.1.0	1.0        	Install complete
+2       	Thu Oct  8 16:06:10 2026	deployed  	notes-chart-0.1.0	1.0        	Upgrade complete
++ helm upgrade notes-dev notes-chart --set image.tag=broken-tag-does-not-exist
+Release "notes-dev" has been upgraded. Happy Helming!
+NAME: notes-dev
+LAST DEPLOYED: Thu Oct  8 16:06:17 2026
+NAMESPACE: default
+STATUS: deployed
+REVISION: 3
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
++ sleep 5
++ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS        AGE
+app-blue-5c69d7785c-2759w            1/1     Running             2 (4m27s ago)   19d
+app-blue-5c69d7785c-nqkqd            1/1     Running             2 (4m27s ago)   19d
+app-blue-5c69d7785c-pg9zw            1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-5l7j9          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-6cv7n          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-6s2x7          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-89bjd          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-9bx6n          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-9nqbx          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-bvcxz          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-h28nz          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-vgbxr          1/1     Running             2 (4m27s ago)   19d
+app-canary-5849994497-z2k5t          1/1     Running             2 (4m27s ago)   19d
+app-green-84df7f978-k5zlw            1/1     Running             2 (4m27s ago)   19d
+app-green-84df7f978-st9mb            1/1     Running             2 (4m27s ago)   19d
+app-green-84df7f978-vr42q            1/1     Running             2 (4m27s ago)   19d
+app-recreate-7bd8d89b8b-6sjg9        1/1     Running             2 (4m27s ago)   19d
+app-recreate-7bd8d89b8b-d4zs6        1/1     Running             2 (4m27s ago)   19d
+app-recreate-7bd8d89b8b-p4kcv        1/1     Running             2 (4m27s ago)   19d
+app-rolling-56bff6d88c-bvg4m         1/1     Running             2 (4m27s ago)   19d
+app-rolling-56bff6d88c-hzz8p         1/1     Running             2 (4m27s ago)   19d
+app-rolling-56bff6d88c-qflc9         1/1     Running             2 (4m27s ago)   19d
+app-rolling-56bff6d88c-w8bv8         1/1     Running             2 (4m27s ago)   19d
+curl-client                          1/1     Running             4 (4m27s ago)   19d
+emptydir-demo                        1/1     Running             1 (4m27s ago)   19d
+headless-dns-client                  1/1     Running             4 (4m27s ago)   19d
+hostpath-demo                        1/1     Running             1 (4m27s ago)   19d
+hpa-demo-5d6676989b-ggqnj            1/1     Running             1 (4m27s ago)   19d
+notes-dev-deploy-74956bd987-b7s8b    1/1     Terminating         0               16s
+notes-dev-deploy-74956bd987-c28k5    1/1     Terminating         0               16s
+notes-dev-deploy-74956bd987-mzpjs    1/1     Running             0               22s
+notes-dev-deploy-bbcc464b4-gt7vg     0/1     ContainerCreating   0               16s
+storage-demo                         1/1     Running             1 (4m27s ago)   19d
+web-app-clusterip-66865d4855-cwdcg   1/1     Running             2 (4m27s ago)   19d
+web-app-clusterip-66865d4855-g68lh   1/1     Running             2 (4m27s ago)   19d
+web-app-clusterip-66865d4855-klg5d   1/1     Running             2 (4m27s ago)   19d
+web-stateful-0                       1/1     Running             2 (4m27s ago)   19d
+web-stateful-1                       1/1     Running             2 (4m27s ago)   19d
+web-stateful-2                       1/1     Running             2 (4m27s ago)   19d
+yatri-backend-6c58cb99c7-cndk4       1/1     Running             2 (4m27s ago)   19d
+yatri-backend-6c58cb99c7-tc5sn       1/1     Running             2 (4m27s ago)   19d
+yatri-frontend-ddcfc4b5f-2pplw       1/1     Running             2 (4m27s ago)   19d
+yatri-frontend-ddcfc4b5f-trpq7       1/1     Running             2 (4m27s ago)   19d
++ helm rollback notes-dev 2
+Rollback was a success! Happy Helming!
++ sleep 5
