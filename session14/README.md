@@ -1,3 +1,15 @@
+# Session 14: Kubernetes Troubleshooting
+
+## Task 1: Kubernetes Commands
+The commands below (`get`, `describe`, `logs`, `exec`, `events`) are the primary tools used to inspect the state of resources, view container logs, and execute commands inside containers to find the root cause of issues.
+
+## Task 2: Troubleshooting Common Issues
+- **CrashLoopBackOff**: Occurs when a container repeatedly crashes after starting. *Solution*: Check `kubectl logs` to find the application error and fix the code/configuration.
+- **ImagePullBackOff / ErrImagePull**: Occurs when Kubernetes cannot pull the container image. *Solution*: Verify the image name, tag, and registry credentials.
+- **Pending Pods**: Occurs when the scheduler cannot place a pod on a node (often due to lack of resources like CPU/Memory). *Solution*: Check `kubectl describe pod` to see the scheduling error and scale up the cluster.
+- **Service/DNS Issues**: Occurs when pods cannot resolve or reach services. *Solution*: Use a temporary busybox pod to `nslookup` the service and check endpoints (`kubectl get endpoints`).
+
+---
 01-kubectl-get
 
 <img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/211ce4a9-696f-4169-ae9f-63ba910f7f8d" />

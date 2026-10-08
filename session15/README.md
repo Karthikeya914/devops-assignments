@@ -1,3 +1,21 @@
+# Session 15: Helm
+
+## Task 1: Helm Commands
+- `helm create`: Creates a new Helm chart directory with default templates.
+- `helm install`: Deploys a Helm chart onto the Kubernetes cluster.
+- `helm list`: Lists all deployed Helm releases.
+- `helm upgrade`: Upgrades a release to a new version of a chart.
+- `helm history`: Shows the revision history of a release.
+- `helm rollback`: Rolls back a release to a previous revision.
+- `helm uninstall`: Removes a deployed release from the cluster.
+
+## Task 2: Helm Rollback Workflow
+1. **Install**: Initial deployment of the application.
+2. **Upgrade**: Pushing a new version or changing configuration.
+3. **Verify**: Checking if the new version is running correctly.
+4. **Rollback**: Reverting to the previous revision if the upgrade failed or caused issues (`helm rollback <release> <revision>`).
+
+---
 
 Task-1 
 <img width="2880" height="1756" alt="image" src="https://github.com/user-attachments/assets/717b592c-aa68-4621-a33f-66ef29f3bb29" />

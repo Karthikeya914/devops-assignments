@@ -1,3 +1,18 @@
+# Session 13: Kubernetes Storage, HPA & Probes
+
+## Task 1: Volume Documentation
+- **emptyDir**: A temporary volume created when a Pod is assigned to a Node, and deleted when the Pod is removed.
+- **hostPath**: Mounts a file or directory from the host node filesystem into your Pod.
+- **PersistentVolume (PV)**: A piece of storage in the cluster provisioned by an administrator.
+- **PersistentVolumeClaim (PVC)**: A request for storage by a user, which consumes PV resources.
+- **StorageClass**: Allows administrators to describe the "classes" of storage they offer (e.g., fast, slow).
+- **Dynamic Provisioning**: Automatically provisions storage when a PVC is created using a StorageClass.
+
+## Task 2: HPA & Probes
+Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a deployment based on observed CPU utilization. 
+Liveness and Readiness Probes ensure that traffic is only sent to healthy pods, and dead pods are restarted.
+
+---
 1-volumes
 
 <img width="1440" height="900" alt="Screenshot 2026-09-19 at 10 33 09 AM" src="https://github.com/user-attachments/assets/61afdd27-ae61-4aa4-95e4-2ccf4ebcb048" />
