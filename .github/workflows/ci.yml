@@ -7,6 +7,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: session16
+
 jobs:
   test:
     name: Test Application
@@ -49,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: calculator-build
-          path: build/
+          path: session16/build/
   security-check:
     name: Security Check
     needs: test
