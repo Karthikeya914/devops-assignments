@@ -31,29 +31,16 @@ graph TD
 
 ---
 
-## 🚀 Execution Logs
+
 
 ### 1. Initialize Terraform (`terraform init`)
-```bash
-$ terraform init
 
-Initializing the backend...
-Initializing provider plugins...
-- Finding latest version of hashicorp/aws...
-- Installing hashicorp/aws v5.66.0...
-- Installed hashicorp/aws v5.66.0 (signed by HashiCorp)
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/3c67189a-da40-4546-a56b-65d2e5e9cf1c" />
 
-Terraform has been successfully initialized!
 ```
 
 ### 2. Format & Validate (`terraform fmt` & `terraform validate`)
-```bash
-$ terraform fmt
-main.tf
-
-$ terraform validate
-Success! The configuration is valid.
-```
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/70cbd764-c54f-4936-9cbb-6291f5ec2f7c" />
 
 ### 3. Generate Execution Plan (`terraform plan`)
 ```bash
