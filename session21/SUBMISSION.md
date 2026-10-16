@@ -25,7 +25,7 @@ The `session21/` folder contains:
 1. **`README.md`** — Comprehensive technical documentation, architectural diagrams, runbooks, and verified screenshot evidence catalog.
 2. **`screenshots/`** — All 16 evaluation screenshots covering M1 through M9.
 3. **`demo/` folder**:
-   - 📊 **Presentation Slides** (`demo/presentation_slides.md` / `demo/slides.pdf`)
+   - 📊 **Presentation Slides** ([`demo/slides.pdf`](demo/slides.pdf))
    - 🎥 **Presentation Video Walkthrough** (`demo/walkthrough.mp4`) — *Record 3–5 min screencast before final form submission*.
 
 ---
