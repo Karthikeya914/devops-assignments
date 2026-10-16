@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: opspulse-alerts
+  namespace: opspulse
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: opspulse-application-alerts
+      rules:
+        - alert: OpsPulseHighErrorRate
+          expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "OpsPulse high 5xx error rate"
+            description: "Over 5% of requests to OpsPulse backend returned 5xx errors over the last 5 minutes."
+
+        - alert: OpsPulseSlowResponses
+          expr: http_request_duration_seconds{quantile="0.95"} > 0.5
+          for: 3m
+          labels:
+            severity: warning
+          annotations:
+            summary: "OpsPulse high response latency"
+            description: "95th percentile latency exceeds 500ms on backend API."

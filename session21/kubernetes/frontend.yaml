@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opspulse-frontend
+  namespace: opspulse
+  labels:
+    app: opspulse-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: opspulse-frontend
+  template:
+    metadata:
+      labels:
+        app: opspulse-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ghcr.io/karthikeya914/opspulse-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opspulse-frontend
+  namespace: opspulse
+  labels:
+    app: opspulse-frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+  selector:
+    app: opspulse-frontend
