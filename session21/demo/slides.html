@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpsPulse — DevOps Final Capstone Presentation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+    .header-nav {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 12px 24px;
+      background: #1e293b;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
+    .header-nav h1 { font-size: 1.1rem; color: #38bdf8; }
+    .header-nav p { font-size: 0.85rem; color: #94a3b8; }
+    .slide-deck {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .slide {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 40px;
+      aspect-ratio: 16 / 9;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .slide-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .slide-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+    .slide-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      flex: 1;
+      align-items: center;
+    }
+    .slide-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bullet-item {
+      background: #1e293b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border-left: 4px solid #38bdf8;
+    }
+    .bullet-item strong {
+      display: block;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .bullet-item p {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .slide-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .slide-image img {
+      max-width: 100%;
+      max-height: 420px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      object-fit: contain;
+    }
+    .title-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    }
+    .title-slide h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .title-slide h2 {
+      font-size: 1.3rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .title-slide p {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      margin-top: 36px;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+    .slide-footer {
+      position: absolute;
+      bottom: 16px;
+      right: 24px;
+      font-size: 0.75rem;
+      color: #475569;
+    }
+    @media print {
+      body { background: transparent; padding: 0; }
+      .header-nav { display: none; }
+      .slide {
+        page-break-after: always;
+        break-after: page;
+        border: none;
+        box-shadow: none;
+        aspect-ratio: 16 / 9;
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-nav">
+    <div>
+      <h1>OpsPulse — DevOps Capstone Presentation Deck</h1>
+      <p>Session 21 Final Project • Karthikeya</p>
+    </div>
+    <div>
+      <span style="font-size:0.85rem; color:#94a3b8;">10 Slides • Press Cmd + P to Save as PDF</span>
+    </div>
+  </div>
+
+  <div class="slide-deck">
+
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide">
+      <div class="slide-tag">FINAL DEVOPS CAPSTONE PROJECT</div>
+      <h1>OpsPulse Platform</h1>
+      <h2>Cloud Incident & Reliability Engineering Platform</h2>
+      <p>Demonstrating a 10-module production DevOps lifecycle from developer laptop through automated testing, container security, cloud IaC on AWS EKS, and real-time observability.</p>
+      <div class="meta">
+        <strong>Presenter:</strong> Karthikeya &nbsp;|&nbsp; 
+        <strong>Repository:</strong> github.com/Karthikeya914/devops-assignments &nbsp;|&nbsp; 
+        <strong>Date:</strong> October 2026
+      </div>
+      <div class="slide-footer">Slide 1 / 10</div>
+    </div>
+
+    <!-- Slide 2: Application Stack -->
+    <div class="slide">
+      <div class="slide-tag">M1 — APPLICATION ARCHITECTURE</div>
+      <h2 class="slide-title">Module 1: Full-Stack Polyglot Application</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>FastAPI Python Backend</strong>
+            <p>Asynchronous REST API with Pydantic validation, SQLAlchemy ORM, and /health & /ready probes.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>React + Vite Frontend</strong>
+            <p>Single-page application featuring live incident metrics, severity badges, and dark-mode UX.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>PostgreSQL & Alembic</strong>
+            <p>Relational storage with version-controlled schema migrations.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Local Orchestration</strong>
+            <p>Docker Compose starts all 3 services seamlessly with a single command.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/01_app_dashboard_live.png" alt="App Dashboard">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 2 / 10</div>
+    </div>
+
+    <!-- Slide 3: Testing -->
+    <div class="slide">
+      <div class="slide-tag">M2 — AUTOMATED TESTING</div>
+      <h2 class="slide-title">Module 2: Automated Testing & Quality Gates</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>10/10 Comprehensive Pytest Suite</strong>
+            <p>10 automated unit and integration tests covering CRUD, health checks, and 404 validation.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Isolated Test Database</strong>
+            <p>Uses SQLite in-memory database fixtures in conftest.py, leaving production data untouched.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Sub-Second Execution</strong>
+            <p>All tests pass in 0.12 seconds as the first automated CI quality gate.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/03_pytest_automated_tests.png" alt="Pytest Results">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 3 / 10</div>
+    </div>
+
+    <!-- Slide 4: Docker -->
+    <div class="slide">
+      <div class="slide-tag">M4 — CONTAINERIZATION</div>
+      <h2 class="slide-title">Module 4: Multi-Stage Docker Containerization</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Multi-Stage Builds</strong>
+            <p>Frontend compiles with Node 20 and runs on lightweight Nginx Alpine (28MB).</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Non-Root User Hardening</strong>
+            <p>Runs as unprivileged user 'appuser' (UID 10001) for container security compliance.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Docker Compose</strong>
+            <p>Connects frontend, backend, and postgres on internal bridged networks.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/04_docker_compose_and_images.png" alt="Docker Compose">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 4 / 10</div>
+    </div>
+
+    <!-- Slide 5: CI/CD Pipeline -->
+    <div class="slide">
+      <div class="slide-tag">M5 — CONTINUOUS INTEGRATION</div>
+      <h2 class="slide-title">Module 5: Automated CI/CD Pipeline & GHCR</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Triggers on Push</strong>
+            <p>GitHub Actions triggers automatically on every push to main.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Green Quality Gating</strong>
+            <p>Runs pytest, builds frontend, compiles Docker images, and scans vulnerabilities.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Immutable Image Publishing</strong>
+            <p>Images published to GitHub Container Registry tagged with Git commit SHA.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/06_github_actions_pipeline_runs.png" alt="GitHub Actions">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 5 / 10</div>
+    </div>
+
+    <!-- Slide 6: DevSecOps -->
+    <div class="slide">
+      <div class="slide-tag">M6 — SECURITY HARDENING</div>
+      <h2 class="slide-title">Module 6: DevSecOps Vulnerability Scanning</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Automated Trivy Scanning</strong>
+            <p>Integrated into CI to scan both backend and frontend images for CVEs.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Severity Gating</strong>
+            <p>Configured to fail builds on CRITICAL or HIGH severity CVEs.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Clean 0-Vulnerability Baseline</strong>
+            <p>Lean multi-stage builds stripped of compiler tools produce 0 vulnerabilities.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/09_trivy_security_scan_clean.png" alt="Trivy Scan">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 6 / 10</div>
+    </div>
+
+    <!-- Slide 7: Terraform -->
+    <div class="slide">
+      <div class="slide-tag">M7 — CLOUD INFRASTRUCTURE</div>
+      <h2 class="slide-title">Module 7: Infrastructure as Code (AWS VPC & EKS)</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Terraform Plan (57 Resources)</strong>
+            <p>Modular HCL declares VPC across 2 AZs and managed EKS cluster in ap-south-1.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Live AWS Verification</strong>
+            <p>Cluster 'opspulse-eks' and VPC 'opspulse-eks-vpc' verified active in AWS Console.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Clean Teardown</strong>
+            <p>All 57 resources destroyed via terraform destroy with zero runaway costs.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/14_aws_console_eks_cluster.png" alt="AWS Console">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 7 / 10</div>
+    </div>
+
+    <!-- Slide 8: Kubernetes & Helm -->
+    <div class="slide">
+      <div class="slide-tag">M8 — ORCHESTRATION & PACKAGING</div>
+      <h2 class="slide-title">Module 8: Kubernetes Orchestration & Helm</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Helm Chart Package</strong>
+            <p>Modular templates for Deployments, ClusterIP Services, Ingress, and HPA.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>High Availability & Probes</strong>
+            <p>Dual-replica deployments with liveness and readiness probes for zero downtime.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Ingress Routing</strong>
+            <p>Nginx Ingress controller routes / to frontend and /api to backend.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/11_k8s_running_pods.png" alt="Kubernetes Pods">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 8 / 10</div>
+    </div>
+
+    <!-- Slide 9: Observability -->
+    <div class="slide">
+      <div class="slide-tag">M9 — OBSERVABILITY & TELEMETRY</div>
+      <h2 class="slide-title">Module 9: Observability, Metrics & Health Probing</h2>
+      <div class="slide-content">
+        <div class="slide-bullets">
+          <div class="bullet-item">
+            <strong>Prometheus Metrics</strong>
+            <p>Backend exports real-time HTTP metrics, status code rates, and latency on /metrics.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Prometheus Scrape Configuration</strong>
+            <p>Automated scraping configured via Helm values in monitoring/.</p>
+          </div>
+          <div class="bullet-item">
+            <strong>Self-Healing Health Probes</strong>
+            <p>Liveness probe catches worker deadlocks; readiness probe verifies database pool.</p>
+          </div>
+        </div>
+        <div class="slide-image">
+          <img src="../screenshots/10_prometheus_metrics_endpoint.png" alt="Prometheus Metrics">
+        </div>
+      </div>
+      <div class="slide-footer">Slide 9 / 10</div>
+    </div>
+
+    <!-- Slide 10: Retrospective -->
+    <div class="slide">
+      <div class="slide-tag">M10 — ENGINEERING RETROSPECTIVE</div>
+      <h2 class="slide-title">Module 10: Key Learnings & Takeaways</h2>
+      <div style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
+        <div class="bullet-item">
+          <strong>1. Shift-Left Security Prevents Vulnerabilities</strong>
+          <p>Integrating automated Trivy scans into GitHub Actions catches CVEs before code reaches production registries.</p>
+        </div>
+        <div class="bullet-item">
+          <strong>2. Infrastructure as Code Guarantees Reproducibility</strong>
+          <p>Managing AWS VPC and EKS with Terraform eliminates manual drift and enables reliable provisioning and teardown in minutes.</p>
+        </div>
+        <div class="bullet-item">
+          <strong>3. Observability Enables Self-Healing Systems</strong>
+          <p>Separating liveness (/health) and readiness (/ready) probes allows Kubernetes to route traffic safely and auto-recover failed pods.</p>
+        </div>
+        <div class="bullet-item">
+          <strong>4. GitOps Provides Complete Auditability</strong>
+          <p>Version-controlling Helm charts and declarative manifests ensures an immutable history of every production release.</p>
+        </div>
+      </div>
+      <div class="slide-footer">Slide 10 / 10</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
