@@ -26,7 +26,9 @@ The `session21/` folder contains:
 2. **`screenshots/`** — All 16 evaluation screenshots covering M1 through M9.
 3. **`demo/` folder**:
    - 📊 **Presentation Slides** ([`demo/slides.pdf`](demo/slides.pdf))
-   - 🎥 **Presentation Video Walkthrough**: [▶️ **Watch Stream on Google Drive (Instant Playback)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) &nbsp;|&nbsp; Local file: [`demo/walkthrough.mp4`](demo/walkthrough.mp4)
+   - 🎥 **Presentation Video Walkthrough**:
+     - ▶️ **[Recommended] Stream on Google Drive (Full HD)**: [**Watch Full HD Video Walkthrough**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) *(Instant streaming; recommended due to GitHub's 10MB inline playback limit)*
+     - 💾 **Download Video File (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) *(Normal 23MB version)*
 
 ---
 

@@ -7,7 +7,11 @@
 > [!IMPORTANT]
 > ### 🎥 Final Capstone Presentation & Demo Deliverables (Module 10)
 > All required presentation and evaluation materials are committed directly in the [`demo/`](demo/) and [`screenshots/`](screenshots/) directories:
-> - 🎥 **Presentation Walkthrough Video**: [▶️ **Watch Stream on Google Drive (Instant Playback)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) &nbsp;|&nbsp; Local file: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) *(5-minute HD screen walkthrough)*
+>
+> 💡 **Video Playback Notice**: Due to GitHub's **10MB file limit** for native inline video playback, please use one of the following options:
+> - ▶️ **[Recommended] Stream on Google Drive (Full HD)**: [**Watch Full HD Video Walkthrough**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) — *Recommended for instant, high-definition browser streaming.*
+> - 💾 **Download Local Repository Version (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *Download the 23MB version to watch locally.*
+>
 > - 📊 **Presentation Slides (PDF)**: [`demo/slides.pdf`](demo/slides.pdf) — *Official 10-slide high-definition presentation deck.*
 > - 📋 **Submission Checklist & Guidelines**: [`SUBMISSION.md`](SUBMISSION.md) — *Official submission rubric and Google Form submission link.*
 
@@ -327,9 +331,14 @@ Detailed RCA and resolution steps are documented in [troubleshooting/TROUBLESHOO
 ### 🎥 Presentation & Video Walkthrough Deliverables (Module 10)
 All presentation and video assets are committed directly in the [`demo/`](demo/) folder:
 
+> [!TIP]
+> **Video Playback Notice**: Since GitHub has a 10MB limit for native browser video playback, we recommend streaming the video directly in HD via Google Drive, or downloading the full 23MB repository video file:
+> - ▶️ **[Recommended] Stream Full HD Video**: [**Google Drive Video Stream**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)
+> - 💾 **Download Video File (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4)
+
 | # | Artifact | Description | Status | Rubric Module |
 |---|---|---|:---:|:---:|
-| 🎥 | [▶️ **Watch on Google Drive**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)<br>Local file: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) | **5-Minute HD Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
+| 🎥 | [▶️ **Watch on Google Drive (Recommended)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)<br>Download: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) (23MB) | **5-Minute Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
 | 📊 | [`demo/slides.pdf`](demo/slides.pdf) | **Official 10-Slide Presentation PDF Deck** with embedded architecture diagrams and evaluation proof | Verified ✅ | M10 |
 | 📋 | [`SUBMISSION.md`](SUBMISSION.md) | Official submission checklist, rubrics, and Google Form submission link | Verified ✅ | M10 |
 
