@@ -309,7 +309,7 @@ All required evaluation screenshots are stored in `session21/screenshots/`:
 | 13b | [`13b_terraform_apply_output.png`](screenshots/13b_terraform_apply_output.png) | `terraform apply` terminal output: 57 resources added, EKS cluster & VPC created | Verified ✅ | M7 |
 | 14 | [`14_aws_console_eks_cluster.png`](screenshots/14_aws_console_eks_cluster.png) | AWS Console showing Active EKS cluster (`opspulse-eks`) in `ap-south-1` | Verified ✅ | M7 |
 | 15 | [`15_aws_console_vpc.png`](screenshots/15_aws_console_vpc.png) | AWS Console showing Available VPC (`opspulse-eks-vpc`) in `ap-south-1` | Verified ✅ | M7 |
-| 16 | `16_terraform_destroy_output.png` | `terraform destroy` clean teardown confirmation | Teardown in progress ⏳ | M7 |
+| 16 | [`16_terraform_destroy_output.png`](screenshots/16_terraform_destroy_output.png) | `terraform destroy` clean teardown confirmation (all resources destroyed) | Verified ✅ | M7 |
 
 ---
 
