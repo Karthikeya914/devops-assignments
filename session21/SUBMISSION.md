@@ -26,7 +26,7 @@ The `session21/` folder contains:
 2. **`screenshots/`** — All 16 evaluation screenshots covering M1 through M9.
 3. **`demo/` folder**:
    - 📊 **Presentation Slides** ([`demo/slides.pdf`](demo/slides.pdf))
-   - 🎥 **Presentation Video Walkthrough** (`demo/walkthrough.mp4`) — *Record 3–5 min screencast before final form submission*.
+   - 🎥 **Presentation Video Walkthrough**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) &nbsp;|&nbsp; [▶️ **Direct Browser Stream**](https://github.com/Karthikeya914/devops-assignments/raw/main/session21/demo/walkthrough.mp4)
 
 ---
 

@@ -7,8 +7,8 @@
 > [!IMPORTANT]
 > ### 🎥 Final Capstone Presentation & Demo Deliverables (Module 10)
 > All required presentation and evaluation materials are committed directly in the [`demo/`](demo/) and [`screenshots/`](screenshots/) directories:
-> - 🎥 **Presentation Walkthrough Video (MP4)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *Complete 5-minute high-definition walkthrough covering code, pipelines, live app, Terraform, and Kubernetes.*
-> - 📊 **Presentation Slides (PDF)**: [`demo/slides.pdf`](demo/slides.pdf) — *Official 10-slide high-definition presentation deck with embedded architecture and evaluation proof.*
+> - 🎥 **Presentation Walkthrough Video (MP4)**: [**Watch Raw Stream in Browser**](https://github.com/Karthikeya914/devops-assignments/raw/main/session21/demo/walkthrough.mp4) &nbsp;|&nbsp; Local file: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) *(5-minute HD screen walkthrough)*
+> - 📊 **Presentation Slides (PDF)**: [`demo/slides.pdf`](demo/slides.pdf) — *Official 10-slide high-definition presentation deck.*
 > - 📋 **Submission Checklist & Guidelines**: [`SUBMISSION.md`](SUBMISSION.md) — *Official submission rubric and Google Form submission link.*
 
 ---
@@ -329,7 +329,7 @@ All presentation and video assets are committed directly in the [`demo/`](demo/)
 
 | # | Artifact | Description | Status | Rubric Module |
 |---|---|---|:---:|:---:|
-| 🎥 | [`demo/walkthrough.mp4`](demo/walkthrough.mp4) | **5-Minute HD Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
+| 🎥 | [`demo/walkthrough.mp4`](demo/walkthrough.mp4)<br>[▶️ **Direct Stream Link**](https://github.com/Karthikeya914/devops-assignments/raw/main/session21/demo/walkthrough.mp4) | **5-Minute HD Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
 | 📊 | [`demo/slides.pdf`](demo/slides.pdf) | **Official 10-Slide Presentation PDF Deck** with embedded architecture diagrams and evaluation proof | Verified ✅ | M10 |
 | 📋 | [`SUBMISSION.md`](SUBMISSION.md) | Official submission checklist, rubrics, and Google Form submission link | Verified ✅ | M10 |
 
