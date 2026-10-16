@@ -305,9 +305,9 @@ All required evaluation screenshots are stored in `session21/screenshots/`:
 | 10 | [`10_prometheus_metrics_endpoint.png`](screenshots/10_prometheus_metrics_endpoint.png) | Backend `/metrics` Prometheus telemetry output | Verified ✅ | M9 |
 | 11 | [`11_k8s_running_pods.png`](screenshots/11_k8s_running_pods.png) | `kubectl get pods -n opspulse` showing all backend & postgres pods running | Verified ✅ | M8 |
 | 12 | [`12_helm_list_and_services.png`](screenshots/12_helm_list_and_services.png) | `helm list -n opspulse` deployed release + ClusterIP services | Verified ✅ | M8 |
-| 13 | `13_terraform_plan_output.png` | `terraform plan` VPC + EKS execution plan | Ready to run ⏳ | M7 |
-| 14 | `14_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Pending AWS sync ⏳ | M7 |
-| 15 | `15_terraform_destroy_output.png` | `terraform destroy` clean teardown | Pending AWS sync ⏳ | M7 |
+| 13 | [`13_terraform_plan_output.png`](screenshots/13_terraform_plan_output.png) | `terraform plan` VPC + EKS execution plan (57 to add) | Verified ✅ | M7 |
+| 14 | `14_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Optional Apply ⏳ | M7 |
+| 15 | `15_terraform_destroy_output.png` | `terraform destroy` clean teardown | Optional Apply ⏳ | M7 |
 
 ---
 
