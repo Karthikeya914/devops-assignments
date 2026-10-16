@@ -76,21 +76,17 @@ jobs:
           docker build -t ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-backend:${{ github.sha }} ./session21/backend
           docker build -t ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-frontend:${{ github.sha }} ./session21/frontend
 
+      - name: Install Trivy Security Scanner
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
       - name: Scan Backend Image with Trivy
-        uses: aquasecurity/trivy-action@0.30.0
-        with:
-          image-ref: ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-backend:${{ github.sha }}
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: '1'
+        run: |
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-backend:${{ github.sha }}
 
       - name: Scan Frontend Image with Trivy
-        uses: aquasecurity/trivy-action@0.30.0
-        with:
-          image-ref: ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-frontend:${{ github.sha }}
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: '1'
+        run: |
+          trivy image --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 ghcr.io/${{ env.IMAGE_OWNER }}/opspulse-frontend:${{ github.sha }}
 
       - name: Push Images to GHCR
         if: github.ref == 'refs/heads/main'
