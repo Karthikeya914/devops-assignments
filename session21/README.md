@@ -1,4 +1,4 @@
-# OpsPulse — Session 21: Final DevOps Project & Reliability Engineering Platform
+# OpsPulse — Session 21 Final DevOps Capstone Project
 
 [![Session 21 - OpsPulse Pipeline](https://github.com/Karthikeya914/devops-assignments/actions/workflows/session21-pipeline.yml/badge.svg)](https://github.com/Karthikeya914/devops-assignments/actions)
 [![Security Gate: Trivy](https://img.shields.io/badge/Security%20Scan-Trivy%20Passed-brightgreen)](https://github.com/Karthikeya914/devops-assignments)
@@ -10,7 +10,7 @@
 >
 > 💡 **Video Playback Notice**: Due to GitHub's **10MB file limit** for native inline video playback, please use one of the following options:
 > - ▶️ **[Recommended] Stream on Google Drive (Full HD)**: [**Watch Full HD Video Walkthrough**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) — *Recommended for instant, high-definition browser streaming.*
-> - 💾 **Download Local Repository Version (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *Download the 23MB version to watch locally.*
+> - 💾 **Download Local Repository Version (45MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *Download the 45MB version to watch locally.*
 >
 > - 📊 **Presentation Slides (PDF)**: [`demo/slides.pdf`](demo/slides.pdf) — *Official 10-slide high-definition presentation deck.*
 > - 📋 **Submission Checklist & Guidelines**: [`SUBMISSION.md`](SUBMISSION.md) — *Official submission rubric and Google Form submission link.*
@@ -19,9 +19,9 @@
 
 ## 1. Project Overview
 
-**OpsPulse** is a production-grade, full-stack Cloud Incident & Reliability Engineering Platform built for tracking live production outages, service severities (`P1-CRITICAL` to `P4-LOW`), mitigation statuses, and team runbooks.
+**OpsPulse** is an operational Helpdesk and Incident Tracking web application built for the Session 21 Final DevOps Capstone. It provides engineering teams with a clean interface to report service outages, track triage progress (`Open`, `Investigating`, `Mitigated`, `Resolved`), assign priorities (`P1` through `P4`), and manage team runbooks.
 
-This project implements an end-to-end, enterprise-level DevOps lifecycle — tracing an application from developer workstation through automated testing, container security scanning, cloud infrastructure provisioning with Terraform, orchestration on AWS EKS with Kubernetes and Helm, real-time observability with Prometheus & Grafana, and automated GitOps synchronization with ArgoCD.
+The objective of this capstone was to take a full-stack web application through every stage of a modern DevOps lifecycle: writing automated unit tests, building multi-stage Docker containers, running automated Trivy vulnerability scans, provisioning AWS EKS infrastructure with Terraform, orchestrating deployments with Kubernetes and Helm, and gathering real-time telemetry with Prometheus.
 
 ---
 
@@ -332,13 +332,13 @@ Detailed RCA and resolution steps are documented in [troubleshooting/TROUBLESHOO
 All presentation and video assets are committed directly in the [`demo/`](demo/) folder:
 
 > [!TIP]
-> **Video Playback Notice**: Since GitHub has a 10MB limit for native browser video playback, we recommend streaming the video directly in HD via Google Drive, or downloading the full 23MB repository video file:
+> **Video Playback Notice**: Since GitHub has a 10MB limit for native browser video playback, we recommend streaming the video directly in HD via Google Drive, or downloading the repository video file:
 > - ▶️ **[Recommended] Stream Full HD Video**: [**Google Drive Video Stream**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)
-> - 💾 **Download Video File (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4)
+> - 💾 **Download Video File (45MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4)
 
 | # | Artifact | Description | Status | Rubric Module |
 |---|---|---|:---:|:---:|
-| 🎥 | [▶️ **Watch on Google Drive (Recommended)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)<br>Download: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) (23MB) | **5-Minute Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
+| 🎥 | [▶️ **Watch on Google Drive (Recommended)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)<br>Download: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) (45MB) | **5-Minute Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
 | 📊 | [`demo/slides.pdf`](demo/slides.pdf) | **Official 10-Slide Presentation PDF Deck** with embedded architecture diagrams and evaluation proof | Verified ✅ | M10 |
 | 📋 | [`SUBMISSION.md`](SUBMISSION.md) | Official submission checklist, rubrics, and Google Form submission link | Verified ✅ | M10 |
 
@@ -369,7 +369,7 @@ All 16 required evaluation screenshots are stored in the dedicated [`screenshots
 
 ## 13. Lessons Learned & Key Takeaways
 
-1. **Shift-Left Security Works**: Integrating automated Trivy container image scanning directly into GitHub Actions catches CVEs before code reaches production registries.
-2. **Infrastructure as Code (IaC) Reproducibility**: Managing AWS VPC and EKS with Terraform eliminates configuration drift and enables automated provisioning and teardown in minutes.
-3. **Observability vs Monitoring**: Exposing Prometheus metrics at `/metrics` with dedicated endpoints `/health` (liveness) and `/ready` (database connectivity check) allows Kubernetes to make intelligent routing decisions and self-heal failed pods.
-4. **GitOps Auditability**: Reconciling desired cluster state from Git via Helm and ArgoCD provides an immutable history of every production release.
+1. **Automated Security Gates**: Running Trivy directly in the GitHub Actions CI pipeline caught base-image vulnerabilities before publishing images to GHCR.
+2. **Infrastructure as Code**: Defining the VPC and EKS cluster in Terraform made it predictable to provision 57 cloud resources and cleanly destroy them with `terraform destroy` so no idle AWS charges remain.
+3. **Health vs Readiness in Kubernetes**: Separating `/health` (liveness) from `/ready` (which checks actual PostgreSQL database connectivity) prevents Kubernetes from routing traffic to backend pods before the database is ready.
+4. **Helm Configuration Management**: Packaging Kubernetes manifests into Helm charts made it straightforward to customize deployment parameters between local testing and production configurations.

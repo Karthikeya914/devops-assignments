@@ -28,7 +28,7 @@ function App() {
       ]);
 
       if (!resIncidents.ok || !resStats.ok) {
-        throw new Error('API service unreachable. Verify backend container and database.');
+        throw new Error('Could not reach backend API. Check if services are running.');
       }
 
       const incidentsData = await resIncidents.json();
@@ -71,19 +71,19 @@ function App() {
         fetchIncidentsAndStats();
       }
     } catch (err) {
-      console.error('Failed to update incident status:', err);
+      console.error('Failed to update ticket status:', err);
     }
   };
 
   const deleteIncident = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this incident record?')) return;
+    if (!window.confirm('Delete this ticket record?')) return;
     try {
       const res = await fetch(`${API}/incidents/${id}`, { method: 'DELETE' });
       if (res.ok) {
         fetchIncidentsAndStats();
       }
     } catch (err) {
-      console.error('Failed to delete incident:', err);
+      console.error('Failed to delete ticket:', err);
     }
   };
 
@@ -95,7 +95,7 @@ function App() {
       service_name: formData.get('service_name'),
       severity: formData.get('severity'),
       status: 'OPEN',
-      assignee: formData.get('assignee') || 'On-Call Engineer',
+      assignee: formData.get('assignee') || 'Karthikeya',
       description: formData.get('description') || '',
     };
 
@@ -112,7 +112,7 @@ function App() {
         fetchIncidentsAndStats();
       }
     } catch (err) {
-      console.error('Failed to create incident:', err);
+      console.error('Failed to create ticket:', err);
     }
   };
 
@@ -123,22 +123,22 @@ function App() {
           <span className="brand-mark">⚡</span>
           <div>
             <b>OpsPulse</b>
-            <small>Incident & Reliability Platform</small>
+            <small>Helpdesk & Incident Queue</small>
           </div>
         </div>
 
         <nav>
           <a className="active">
-            <span>🚨 Active Incidents</span>
+            <span>📋 All Tickets</span>
           </a>
           <a>
-            <span>📊 Service Health</span>
+            <span>📊 Service Status</span>
           </a>
           <a>
-            <span>📈 SLOs & Metrics</span>
+            <span>📈 Metrics & Latency</span>
           </a>
           <a>
-            <span>⚙️ Cluster Status</span>
+            <span>⚙️ Cluster Health</span>
           </a>
         </nav>
 
@@ -146,15 +146,15 @@ function App() {
           <div className="system-pill">
             <span className="status-indicator live"></span>
             <div>
-              <strong>Kubernetes EKS</strong>
-              <small>Helm Release v1.0.0</small>
+              <strong>AWS EKS Cluster</strong>
+              <small>Helm Release: opspulse</small>
             </div>
           </div>
           <div className="profile">
             <div className="avatar">KC</div>
             <div>
               <b>Karthikeya</b>
-              <small>DevOps Engineer</small>
+              <small>DevOps Lead</small>
             </div>
           </div>
         </div>
@@ -163,14 +163,14 @@ function App() {
       <main className="main">
         <header>
           <div>
-            <p className="eyebrow">RELIABILITY / INCIDENT OPERATIONS</p>
-            <h1>Production Incident Command</h1>
+            <p className="eyebrow">SUPPORT & OPERATIONS QUEUE</p>
+            <h1>Incident & Ticket Board</h1>
             <p className="muted">
-              Live observability and rapid incident triage across Kubernetes services.
+              Live operational tickets, ongoing investigations, and team mitigation notes.
             </p>
           </div>
           <button className="primary" onClick={() => setShowModal(true)}>
-            ＋ Log Incident
+            ＋ New Ticket
           </button>
         </header>
 
@@ -178,14 +178,14 @@ function App() {
           <div className="alert">
             <span>⚠️</span>
             <div>
-              <strong>Service Error:</strong> {error}
+              <strong>Backend Notice:</strong> {error}
             </div>
           </div>
         )}
 
         <section className="stats">
-          <StatCard label="Total Incidents" value={stats.total} icon="📋" />
-          <StatCard label="Open / Triage" value={stats.open} icon="🚨" highlight={stats.open > 0} />
+          <StatCard label="Total Tickets" value={stats.total} icon="📋" />
+          <StatCard label="Needs Action" value={stats.open} icon="🚨" highlight={stats.open > 0} />
           <StatCard label="Investigating" value={stats.investigating} icon="🔍" />
           <StatCard label="Mitigated" value={stats.mitigated} icon="🛡️" />
           <StatCard label="Resolved" value={stats.resolved} icon="✅" />
@@ -201,8 +201,8 @@ function App() {
           <div className="panel tasks-panel">
             <div className="panel-head">
               <div>
-                <h2>Incident Triage Queue</h2>
-                <p className="muted">Filter by status to view active outages and mitigations.</p>
+                <h2>Active Tickets</h2>
+                <p className="muted">Filter by progress stage or priority.</p>
               </div>
 
               <div className="filters">
@@ -212,22 +212,22 @@ function App() {
                     className={filter === statusKey ? 'selected' : ''}
                     onClick={() => setFilter(statusKey)}
                   >
-                    {statusKey === 'ALL' ? 'All Incidents' : statusKey}
+                    {statusKey === 'ALL' ? 'All' : statusKey.charAt(0) + statusKey.slice(1).toLowerCase()}
                   </button>
                 ))}
               </div>
             </div>
 
             {loading ? (
-              <div className="empty">Loading active incident stream…</div>
+              <div className="empty">Loading tickets from database…</div>
             ) : (
               <div className="table-wrap">
                 <table>
                   <thead>
                     <tr>
-                      <th>Incident Title</th>
+                      <th>Ticket Title</th>
                       <th>Service</th>
-                      <th>Severity</th>
+                      <th>Priority</th>
                       <th>Status</th>
                       <th>Assignee</th>
                       <th>Actions</th>
@@ -241,7 +241,7 @@ function App() {
                             <span className={`dot ${item.severity.toLowerCase().replace('-', '_')}`}></span>
                             <div>
                               <b>{item.title}</b>
-                              <small>{item.description || 'No impact notes provided'}</small>
+                              <small>{item.description || 'No additional notes provided'}</small>
                             </div>
                           </div>
                         </td>
@@ -264,14 +264,14 @@ function App() {
                             <button
                               className="icon-btn"
                               onClick={() => advanceStatus(item)}
-                              title="Advance Status"
+                              title="Next Status Stage"
                             >
-                              ↻
+                              ↻ Next
                             </button>
                             <button
                               className="icon-btn delete-btn"
                               onClick={() => deleteIncident(item.id)}
-                              title="Delete Incident"
+                              title="Delete Record"
                             >
                               ✕
                             </button>
@@ -282,7 +282,7 @@ function App() {
                   </tbody>
                 </table>
                 {!visibleIncidents.length && (
-                  <div className="empty">No incidents found in this filter view. All systems nominal.</div>
+                  <div className="empty">No tickets in this view. Everything looks good!</div>
                 )}
               </div>
             )}
@@ -291,40 +291,40 @@ function App() {
           <aside className="panel activity">
             <div className="panel-head">
               <div>
-                <h2>Live Runbook Feed</h2>
-                <p className="muted">Automated triggers and deployment telemetry.</p>
+                <h2>Recent Events</h2>
+                <p className="muted">Cluster and CI/CD automated updates.</p>
               </div>
             </div>
 
             <ActivityRow
               icon="🚀"
-              text="Kubernetes deployment rolling update synced"
-              time="4 min ago"
+              text="Kubernetes deployment running in opspulse namespace"
+              time="5 min ago"
             />
             <ActivityRow
               icon="📡"
-              text="Prometheus scrape target verified healthy"
-              time="18 min ago"
+              text="Prometheus scraping /metrics endpoint (HTTP 200)"
+              time="12 min ago"
             />
             <ActivityRow
               icon="🛡️"
-              text="Trivy security gate completed with 0 Critical CVEs"
-              time="45 min ago"
+              text="Trivy security scan passed with 0 high CVEs"
+              time="35 min ago"
             />
             <ActivityRow
               icon="⚡"
-              text="HPA scaled backend pods based on CPU utilization"
-              time="2 hrs ago"
+              text="PostgreSQL health check and connection pool OK"
+              time="1 hr ago"
             />
 
             <div className="pipeline-tracker">
-              <span className="step done">GitHub Actions</span>
+              <span className="step done">Pytest</span>
               <span className="arrow">→</span>
               <span className="step done">Trivy</span>
               <span className="arrow">→</span>
               <span className="step done">GHCR</span>
               <span className="arrow">→</span>
-              <span className="step active">EKS Helm</span>
+              <span className="step active">Helm</span>
             </div>
           </aside>
         </section>
@@ -334,8 +334,8 @@ function App() {
             <form className="modal" onSubmit={handleCreateIncident}>
               <div className="modal-head">
                 <div>
-                  <p className="eyebrow">NEW INCIDENT</p>
-                  <h2>Declare Operational Incident</h2>
+                  <p className="eyebrow">NEW TICKET</p>
+                  <h2>Create Support Ticket</h2>
                 </div>
                 <button
                   type="button"
@@ -347,59 +347,59 @@ function App() {
               </div>
 
               <label>
-                Incident Title
+                Ticket Title
                 <input
                   name="title"
                   required
-                  placeholder="e.g. 504 Gateway Timeout spike on /api/checkout"
+                  placeholder="e.g. High latency observed on checkout endpoint"
                 />
               </label>
 
               <div className="form-row">
                 <label>
-                  Impacted Service
+                  Affected Service
                   <input
                     name="service_name"
                     required
-                    placeholder="e.g. auth-service, payment-api"
+                    placeholder="e.g. core-api, auth-service"
                   />
                 </label>
 
                 <label>
-                  Severity
+                  Priority
                   <select name="severity">
-                    <option value="P1-CRITICAL">P1 - CRITICAL</option>
-                    <option value="P2-HIGH">P2 - HIGH</option>
+                    <option value="P1-CRITICAL">P1 - Critical</option>
+                    <option value="P2-HIGH">P2 - High</option>
                     <option value="P3-MEDIUM" selected>
-                      P3 - MEDIUM
+                      P3 - Medium
                     </option>
-                    <option value="P4-LOW">P4 - LOW</option>
+                    <option value="P4-LOW">P4 - Low</option>
                   </select>
                 </label>
               </div>
 
               <div className="form-row">
                 <label>
-                  Lead Incident Responder / Assignee
+                  Assignee
                   <input
                     name="assignee"
                     defaultValue="Karthikeya"
-                    placeholder="Responder name"
+                    placeholder="Engineer name"
                   />
                 </label>
               </div>
 
               <label>
-                Impact Description & Mitigation Notes
+                Details & Notes
                 <textarea
                   name="description"
                   rows={3}
-                  placeholder="Observed error rates, affected customer segments, initial runbook steps taken..."
+                  placeholder="Steps taken, error logs observed, or notes for the team..."
                 ></textarea>
               </label>
 
               <button className="primary full" type="submit">
-                Submit Incident to Command
+                Save Ticket
               </button>
             </form>
           </div>
