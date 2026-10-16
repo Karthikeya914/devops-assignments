@@ -1,8 +1,15 @@
-# OpsPulse — DevOps Final Capstone & Reliability Engineering Platform
+# OpsPulse — Session 21: Final DevOps Project & Reliability Engineering Platform
 
 [![Session 21 - OpsPulse Pipeline](https://github.com/Karthikeya914/devops-assignments/actions/workflows/session21-pipeline.yml/badge.svg)](https://github.com/Karthikeya914/devops-assignments/actions)
 [![Security Gate: Trivy](https://img.shields.io/badge/Security%20Scan-Trivy%20Passed-brightgreen)](https://github.com/Karthikeya914/devops-assignments)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+> [!IMPORTANT]
+> ### 🎥 Final Capstone Presentation & Demo Deliverables (Module 10)
+> All required presentation and evaluation materials are committed directly in the [`demo/`](demo/) and [`screenshots/`](screenshots/) directories:
+> - 🎥 **Presentation Walkthrough Video (MP4)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *Complete 5-minute high-definition walkthrough covering code, pipelines, live app, Terraform, and Kubernetes.*
+> - 📊 **Presentation Slides (PDF)**: [`demo/slides.pdf`](demo/slides.pdf) — *Official 10-slide high-definition presentation deck with embedded architecture and evaluation proof.*
+> - 📋 **Submission Checklist & Guidelines**: [`SUBMISSION.md`](SUBMISSION.md) — *Official submission rubric and Google Form submission link.*
 
 ---
 
@@ -102,64 +109,92 @@ This project implements an end-to-end, enterprise-level DevOps lifecycle — tra
 
 ---
 
-## 4. Repository Structure
+## 4. Repository Structure (Session 21: Final Project)
 
 ```text
-session21/
-├── backend/                  # FastAPI Application
-│   ├── app/                  # REST API, models, schemas, database config
-│   │   ├── config.py         # App configuration & environment settings
-│   │   ├── db.py             # SQLAlchemy engine & session factory
-│   │   ├── main.py           # FastAPI routes, health, ready, metrics
-│   │   ├── models.py         # Incident SQLAlchemy ORM model
-│   │   └── schemas.py        # Pydantic validation schemas
-│   ├── alembic/              # Database migration versions
-│   │   └── versions/         # 0001_create_incidents.py
-│   ├── tests/                # Pytest automated test suite
-│   │   ├── conftest.py       # Isolated test database fixture
-│   │   └── test_api.py       # 10 comprehensive endpoint tests
-│   ├── Dockerfile            # Hardened non-root Python runtime
-│   └── requirements.txt      # Python dependencies
-├── frontend/                 # React + Vite Dashboard
-│   ├── src/                  # Components, styles, API integration
-│   │   ├── main.jsx          # Live incident command interface
-│   │   └── styles.css        # Clean operations CSS design system
-│   ├── Dockerfile            # Multi-stage build (Node -> Unprivileged Nginx)
-│   ├── nginx.conf            # Reverse proxy & routing config
-│   └── package.json          # Frontend dependencies
-├── docker-compose.yml        # Full local stack definition with healthchecks
-├── kubernetes/               # Standalone production Kubernetes manifests
-│   ├── configmap.yaml        # Application configuration
-│   ├── secret.yaml           # Database credentials secret
-│   ├── postgres.yaml         # PostgreSQL Deployment, PVC, and Service
-│   ├── backend.yaml          # Backend Deployment (probes, non-root) & Service
-│   ├── frontend.yaml         # Frontend Deployment & Service
-│   └── ingress-and-hpa.yaml  # Ingress routing & Horizontal Pod Autoscaler
-├── helm/taskboard/           # Production Helm Package
-│   ├── Chart.yaml            # Helm chart metadata
-│   ├── values.yaml           # Default deployment configurations
-│   ├── values-dev.yaml       # Development override values
-│   ├── values-prod.yaml      # Production override values
-│   └── templates/            # Parameterized Kubernetes templates
-├── terraform/                # AWS Infrastructure as Code
-│   ├── main.tf               # AWS VPC & EKS Cluster provisioning
-│   ├── variables.tf          # Configurable region, cluster name, environment
-│   ├── outputs.tf            # VPC IDs, cluster endpoints, kubectl command
-│   ├── versions.tf           # Required Terraform & AWS provider versions
+session21/                       # Root directory for Final DevOps Capstone Project
+├── demo/                        # 🎥 M10: Presentation & Video Walkthrough
+│   ├── walkthrough.mp4          # 🎥 Official 5-minute HD screen walkthrough video
+│   └── slides.pdf               # 📊 Official 10-slide HD presentation deck (PDF)
+├── screenshots/                 # 📷 All 16 verified evaluation screenshots (M1–M9)
+│   ├── 01_app_dashboard_live.png
+│   ├── 02_swagger_api_endpoints.png
+│   ├── 03_pytest_automated_tests.png
+│   ├── 04_docker_compose_and_images.png
+│   ├── 05_git_commit_history.png
+│   ├── 06_github_actions_pipeline_runs.png
+│   ├── 07_github_actions_jobs_green.png
+│   ├── 08_ghcr_container_packages.png
+│   ├── 09_trivy_security_scan_clean.png
+│   ├── 10_prometheus_metrics_endpoint.png
+│   ├── 11_k8s_running_pods.png
+│   ├── 12_helm_list_and_services.png
+│   ├── 13_terraform_plan_output.png
+│   ├── 13b_terraform_apply_output.png
+│   ├── 14_aws_console_eks_cluster.png
+│   ├── 15_aws_console_vpc.png
+│   └── 16_terraform_destroy_output.png
+├── backend/                     # M1 & M2: FastAPI Asynchronous Application & Pytest
+│   ├── app/                     # REST API, models, schemas, database config
+│   │   ├── config.py            # App configuration & environment settings
+│   │   ├── db.py                # SQLAlchemy engine & session factory
+│   │   ├── main.py              # FastAPI routes, /health, /ready, /metrics
+│   │   ├── models.py            # Incident SQLAlchemy ORM model
+│   │   └── schemas.py           # Pydantic validation schemas
+│   ├── alembic/                 # Database schema migration versions
+│   │   └── versions/            # 0001_create_incidents.py
+│   ├── tests/                   # Pytest automated test suite
+│   │   ├── conftest.py          # Isolated SQLite test database fixture
+│   │   └── test_api.py          # 10 comprehensive endpoint test cases
+│   ├── Dockerfile               # Hardened non-root Python runtime (UID 10001)
+│   └── requirements.txt         # Python dependencies
+├── frontend/                    # M1 & M4: React + Vite Single-Page Application
+│   ├── src/                     # React components, state, API client
+│   │   ├── App.jsx              # Live incident command interface & filters
+│   │   └── main.jsx             # React entry point
+│   ├── Dockerfile               # Multi-stage build (Node 20 -> Nginx Alpine 28MB)
+│   ├── nginx.conf               # Reverse proxy & API routing config
+│   └── package.json             # Frontend dependencies
+├── terraform/                   # M7: Infrastructure as Code (AWS VPC & EKS)
+│   ├── main.tf                  # AWS VPC & EKS Cluster provisioning in ap-south-1
+│   ├── variables.tf             # Configurable region, cluster name, environment
+│   ├── outputs.tf               # VPC IDs, cluster endpoints, kubectl command
+│   ├── versions.tf              # Required Terraform & AWS provider versions
 │   └── terraform.tfvars.example # Safe variable template (zero secrets)
-├── security/                 # DevSecOps Documentation & Reports
-│   └── README.md             # SAST, SCA, Secret scanning & Trivy analysis
-├── monitoring/               # Observability manifests
-│   ├── prometheus-values.yaml# Prometheus Helm scraping values
-│   └── alert-rules.yaml      # High error rate & latency alert definitions
-├── gitops/                   # GitOps with ArgoCD
-│   └── argocd-application.yaml # ArgoCD declarative Application sync definition
-├── troubleshooting/          # Challenge scenarios
-│   ├── TROUBLESHOOTING.md    # Investigation, root causes, and fixes
-│   ├── broken-image.yaml     # Scenario 1 manifest (ImagePullBackOff)
-│   └── broken-service.yaml   # Scenario 2 manifest (Service selector mismatch)
-├── screenshots/              # Submission evidence screenshots
-└── README.md                 # Complete project documentation
+├── helm/opspulse/               # M8: Production Kubernetes Helm Package
+│   ├── Chart.yaml               # Helm chart metadata
+│   ├── values.yaml              # Default deployment configurations
+│   ├── values-dev.yaml          # Development override values
+│   ├── values-prod.yaml         # Production override values
+│   └── templates/               # Parameterized Deployments, Services, Ingress, HPA
+├── kubernetes/                  # Standalone production Kubernetes manifests
+│   ├── configmap.yaml           # Application configuration
+│   ├── secret.yaml              # Database credentials secret
+│   ├── postgres.yaml            # PostgreSQL Deployment, PVC, and Service
+│   ├── backend.yaml             # Backend Deployment (probes, non-root) & Service
+│   ├── frontend.yaml            # Frontend Deployment & Service
+│   └── ingress-and-hpa.yaml     # Ingress routing & Horizontal Pod Autoscaler
+├── k8s/                         # Cluster bootstrap manifests
+│   └── namespace.yaml           # Dedicated opspulse namespace definition
+├── monitoring/                  # M9: Observability manifests
+│   ├── prometheus-values.yaml   # Prometheus Helm scraping values
+│   └── alert-rules.yaml         # High error rate & latency alert definitions
+├── security/                    # M6: DevSecOps Documentation & Reports
+│   └── README.md                # SAST, SCA, Secret scanning & Trivy analysis
+├── gitops/                      # Continuous Delivery with ArgoCD
+│   └── argocd-application.yaml  # ArgoCD declarative Application sync definition
+├── troubleshooting/             # Final Troubleshooting Challenge
+│   ├── TROUBLESHOOTING.md       # Root-cause analysis, logs, and fixes runbook
+│   ├── broken-image.yaml        # Scenario 1 manifest (ImagePullBackOff)
+│   └── broken-service.yaml      # Scenario 2 manifest (Service selector mismatch)
+├── scripts/                     # Helper & automation scripts
+│   └── load-test.sh             # Traffic generator for HPA & metrics testing
+├── docker-compose.yml           # Full local multi-container stack definition
+├── SUBMISSION.md                # Official submission checklist & Google Form link
+├── GRADING.md                   # 100-Point grading rubric breakdown
+├── README.md                    # Master technical documentation & evidence catalog
+├── .gitignore                   # Excludes .env, __pycache__, node_modules, .venv
+└── .dockerignore                # Container build context exclusions
 ```
 
 ---
@@ -289,7 +324,17 @@ Detailed RCA and resolution steps are documented in [troubleshooting/TROUBLESHOO
 
 ## 12. Submission Evidence & Screenshots Catalog
 
-All required evaluation screenshots are stored in `session21/screenshots/`:
+### 🎥 Presentation & Video Walkthrough Deliverables (Module 10)
+All presentation and video assets are committed directly in the [`demo/`](demo/) folder:
+
+| # | Artifact | Description | Status | Rubric Module |
+|---|---|---|:---:|:---:|
+| 🎥 | [`demo/walkthrough.mp4`](demo/walkthrough.mp4) | **5-Minute HD Presentation Walkthrough Video** covering codebase, GitHub Actions, live OpsPulse app, Terraform AWS console, and Kubernetes | Verified ✅ | M10 |
+| 📊 | [`demo/slides.pdf`](demo/slides.pdf) | **Official 10-Slide Presentation PDF Deck** with embedded architecture diagrams and evaluation proof | Verified ✅ | M10 |
+| 📋 | [`SUBMISSION.md`](SUBMISSION.md) | Official submission checklist, rubrics, and Google Form submission link | Verified ✅ | M10 |
+
+### 📷 Evaluation Screenshots Catalog (Modules 1–9)
+All 16 required evaluation screenshots are stored in the dedicated [`screenshots/`](screenshots/) directory:
 
 | # | Filename | Description | Status | Rubric Module |
 |---|---|---|:---:|:---:|
