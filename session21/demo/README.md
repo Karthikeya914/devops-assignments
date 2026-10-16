@@ -1,21 +1,26 @@
 # Session 21 — Demo Deliverables & Walkthrough Video
 
-This directory contains the final capstone presentation deliverables (Module 10).
+> [!IMPORTANT]
+> ### 🎥 [RECOMMENDED] Watch Walkthrough in Full HD on Google Drive
+> 👉 **Stream Link:** [**https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)
+>
+> 💡 *The local video file `walkthrough.mp4` is **45MB**. Since GitHub limits native browser playback to files under 10MB, you can download `walkthrough.mp4` to watch locally, or click the Google Drive link above to stream it in full HD right in your browser without downloading.*
 
 ---
 
-## 🎥 Walkthrough Video (45MB)
+## 📁 Files in This Directory
 
-Due to GitHub's 10MB limit for native inline video playback, you can choose how to view the presentation:
-
-- ▶️ **[Recommended] Watch Online in Full HD**: [**Stream on Google Drive (Instant Playback)**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)  
-  *Recommended for instant, high-definition streaming directly in your browser without downloading.*
-
-- 💾 **Download Video File (45MB)**: [`walkthrough.mp4`](walkthrough.mp4)  
-  *The video is 45MB: if you want you can download and watch it locally, and if you don't want to download you can watch it here: [Google Drive Stream Link](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing).*
+| File | Description | Action |
+|---|---|---|
+| 📄 [`RECOMMENDED_GOOGLE_DRIVE_LINK.txt`](RECOMMENDED_GOOGLE_DRIVE_LINK.txt) | Plain text file with direct Google Drive HD stream link | [View Link](RECOMMENDED_GOOGLE_DRIVE_LINK.txt) |
+| 🎥 [`walkthrough.mp4`](walkthrough.mp4) | 45MB Walkthrough Video (Normal quality) | [Download (45MB)](walkthrough.mp4) |
+| 📊 [`slides.pdf`](slides.pdf) | Official 10-Slide Capstone Presentation Deck | [View PDF](slides.pdf) |
 
 ---
 
-## 📊 Presentation Slides
+## 🎥 Video Viewing Options
 
-- 📄 **Official 10-Slide Deck (PDF)**: [`slides.pdf`](slides.pdf)
+1. ▶️ **[Recommended] Stream Online in Full HD**:  
+   [**Watch on Google Drive**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) — Instant playback in full resolution.
+2. 💾 **Download Local 45MB File**:  
+   Download [`walkthrough.mp4`](walkthrough.mp4) if you prefer offline playback on your local media player.

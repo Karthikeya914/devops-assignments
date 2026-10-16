@@ -1,0 +1,18 @@
+================================================================================
+🎥 OPSPUSE — FINAL PRESENTATION WALKTHROUGH VIDEO (MODULE 10)
+================================================================================
+
+[RECOMMENDED] Watch the full HD presentation walkthrough on Google Drive:
+👉 https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing
+
+DETAILS:
+- The local repository video file (walkthrough.mp4) is 45MB.
+- Because GitHub has a 10MB limit for native in-browser playback, GitHub
+  does not play 45MB videos directly in the page.
+- If you want, you can download and watch the 45MB file locally:
+  File: walkthrough.mp4 (in this folder)
+- If you don't want to download and want to watch immediately in Full HD:
+  Use the Google Drive link:
+  https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing
+
+================================================================================
