@@ -306,8 +306,9 @@ All required evaluation screenshots are stored in `session21/screenshots/`:
 | 11 | [`11_k8s_running_pods.png`](screenshots/11_k8s_running_pods.png) | `kubectl get pods -n opspulse` showing all backend & postgres pods running | Verified ✅ | M8 |
 | 12 | [`12_helm_list_and_services.png`](screenshots/12_helm_list_and_services.png) | `helm list -n opspulse` deployed release + ClusterIP services | Verified ✅ | M8 |
 | 13 | [`13_terraform_plan_output.png`](screenshots/13_terraform_plan_output.png) | `terraform plan` VPC + EKS execution plan (57 to add) | Verified ✅ | M7 |
-| 14 | `14_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Optional Apply ⏳ | M7 |
-| 15 | `15_terraform_destroy_output.png` | `terraform destroy` clean teardown | Optional Apply ⏳ | M7 |
+| 14 | [`14_aws_console_eks_cluster.png`](screenshots/14_aws_console_eks_cluster.png) | AWS Console showing Active EKS cluster (`opspulse-eks`) in `ap-south-1` | Verified ✅ | M7 |
+| 15 | [`15_aws_console_vpc.png`](screenshots/15_aws_console_vpc.png) | AWS Console showing Available VPC (`opspulse-eks-vpc`) in `ap-south-1` | Verified ✅ | M7 |
+| 16 | `16_terraform_destroy_output.png` | `terraform destroy` clean teardown confirmation | Teardown in progress ⏳ | M7 |
 
 ---
 
