@@ -1,28 +1,32 @@
 frontend:
-  image: ghcr.io/YOUR_ORG/taskboard-frontend
+  image: ghcr.io/karthikeya914/opspulse-frontend
   tag: latest
 backend:
-  image: ghcr.io/YOUR_ORG/taskboard-backend
+  image: ghcr.io/karthikeya914/opspulse-backend
   tag: latest
 replicaCount: 2
-namespace: taskboard
+namespace: opspulse
 imagePullSecrets: []
 postgres:
-  host: taskboard-postgres
-  database: taskboard
-  username: taskboard
-  password: taskboard
+  host: opspulse-postgres
+  database: opspulse
+  username: opspulse
+  password: opspulse_secure_pass
 ingress:
-  enabled: false
-  host: taskboard.local
+  enabled: true
+  host: opspulse.local
 hpa:
   enabled: true
   minReplicas: 2
   maxReplicas: 6
   targetCPUUtilizationPercentage: 60
 resources:
-  requests: {cpu: 100m, memory: 256Mi}
-  limits: {cpu: 500m, memory: 512Mi}
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
 monitoring:
   serviceMonitor:
     enabled: true

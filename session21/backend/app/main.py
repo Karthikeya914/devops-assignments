@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
@@ -6,17 +7,25 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from .config import settings
 from .db import Base, engine, get_db
-from .models import Task
-from .schemas import StatsOut, TaskCreate, TaskOut, TaskUpdate
+from .models import Incident
+from .schemas import IncidentCreate, IncidentOut, IncidentUpdate, StatsOut
 
-app = FastAPI(title=settings.app_name, version="1.0.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
-Instrumentator().instrument(app).expose(app, endpoint="/metrics")
-
-@app.on_event("startup")
-def startup():
-    # Production containers run Alembic before Uvicorn; create_all keeps tests self-contained.
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    yield
+
+app = FastAPI(title=settings.app_name, version="1.0.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
 @app.get("/")
 def root():
@@ -28,49 +37,64 @@ def health():
 
 @app.get("/ready")
 def ready(db: Session = Depends(get_db)):
-    db.execute(select(func.count(Task.id)))
+    db.execute(select(func.count(Incident.id)))
     return {"status": "READY"}
 
-@app.get("/api/tasks", response_model=list[TaskOut])
-def list_tasks(db: Session = Depends(get_db)):
-    return list(db.scalars(select(Task).order_by(Task.id.desc())))
+@app.get("/api/incidents", response_model=list[IncidentOut])
+def list_incidents(db: Session = Depends(get_db)):
+    return list(db.scalars(select(Incident).order_by(Incident.id.desc())))
 
-@app.get("/api/tasks/stats", response_model=StatsOut)
+@app.get("/api/incidents/stats", response_model=StatsOut)
 def stats(db: Session = Depends(get_db)):
-    rows = db.execute(select(Task.status, func.count(Task.id)).group_by(Task.status)).all()
-    counts = {status: count for status, count in rows}
-    return StatsOut(total=sum(counts.values()), todo=counts.get("TODO", 0), inProgress=counts.get("IN_PROGRESS", 0), done=counts.get("DONE", 0))
+    rows = db.execute(select(Incident.status, func.count(Incident.id)).group_by(Incident.status)).all()
+    counts = {s: count for s, count in rows}
 
-@app.get("/api/tasks/{task_id}", response_model=TaskOut)
-def get_task(task_id: int, db: Session = Depends(get_db)):
-    task = db.get(Task, task_id)
-    if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
-    return task
+    critical_count = db.scalar(
+        select(func.count(Incident.id)).where(Incident.severity == "P1-CRITICAL")
+    ) or 0
 
-@app.post("/api/tasks", response_model=TaskOut, status_code=status.HTTP_201_CREATED)
-def create_task(payload: TaskCreate, db: Session = Depends(get_db)):
-    task = Task(**payload.model_dump())
-    db.add(task)
+    return StatsOut(
+        total=sum(counts.values()),
+        open=counts.get("OPEN", 0),
+        investigating=counts.get("INVESTIGATING", 0),
+        mitigated=counts.get("MITIGATED", 0),
+        resolved=counts.get("RESOLVED", 0),
+        critical=critical_count,
+    )
+
+@app.get("/api/incidents/{incident_id}", response_model=IncidentOut)
+def get_incident(incident_id: int, db: Session = Depends(get_db)):
+    incident = db.get(Incident, incident_id)
+    if not incident:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incident not found")
+    return incident
+
+@app.post("/api/incidents", response_model=IncidentOut, status_code=status.HTTP_201_CREATED)
+def create_incident(payload: IncidentCreate, db: Session = Depends(get_db)):
+    incident = Incident(**payload.model_dump())
+    db.add(incident)
     db.commit()
-    db.refresh(task)
-    return task
+    db.refresh(incident)
+    return incident
 
-@app.put("/api/tasks/{task_id}", response_model=TaskOut)
-def update_task(task_id: int, payload: TaskUpdate, db: Session = Depends(get_db)):
-    task = db.get(Task, task_id)
-    if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
+@app.put("/api/incidents/{incident_id}", response_model=IncidentOut)
+def update_incident(incident_id: int, payload: IncidentUpdate, db: Session = Depends(get_db)):
+    incident = db.get(Incident, incident_id)
+    if not incident:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incident not found")
+
     for key, value in payload.model_dump(exclude_unset=True).items():
-        setattr(task, key, value)
-    db.commit()
-    db.refresh(task)
-    return task
+        setattr(incident, key, value)
 
-@app.delete("/api/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_task(task_id: int, db: Session = Depends(get_db)):
-    task = db.get(Task, task_id)
-    if not task:
-        raise HTTPException(status_code=404, detail="Task not found")
-    db.delete(task)
+    db.commit()
+    db.refresh(incident)
+    return incident
+
+@app.delete("/api/incidents/{incident_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_incident(incident_id: int, db: Session = Depends(get_db)):
+    incident = db.get(Incident, incident_id)
+    if not incident:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Incident not found")
+
+    db.delete(incident)
     db.commit()

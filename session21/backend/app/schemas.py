@@ -2,30 +2,37 @@ from datetime import datetime
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
-Status = Literal["TODO", "IN_PROGRESS", "DONE"]
-Priority = Literal["LOW", "MEDIUM", "HIGH"]
+Severity = Literal["P1-CRITICAL", "P2-HIGH", "P3-MEDIUM", "P4-LOW"]
+Status = Literal["OPEN", "INVESTIGATING", "MITIGATED", "RESOLVED"]
 
-class TaskCreate(BaseModel):
+class IncidentBase(BaseModel):
     title: str = Field(min_length=1, max_length=200)
+    service_name: str = Field(default="core-api", min_length=1, max_length=100)
+    severity: Severity = "P3-MEDIUM"
+    status: Status = "OPEN"
     description: str = ""
-    priority: Priority = "MEDIUM"
-    status: Status = "TODO"
-    assignee: str = "Unassigned"
+    assignee: str = "On-Call Engineer"
 
-class TaskUpdate(BaseModel):
+class IncidentCreate(IncidentBase):
+    pass
+
+class IncidentUpdate(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=200)
-    description: str | None = None
-    priority: Priority | None = None
+    service_name: str | None = Field(default=None, min_length=1, max_length=100)
+    severity: Severity | None = None
     status: Status | None = None
+    description: str | None = None
     assignee: str | None = None
 
-class TaskOut(TaskCreate):
+class IncidentOut(IncidentBase):
     id: int
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
 
 class StatsOut(BaseModel):
     total: int
-    todo: int
-    inProgress: int
-    done: int
+    open: int
+    investigating: int
+    mitigated: int
+    resolved: int
+    critical: int
