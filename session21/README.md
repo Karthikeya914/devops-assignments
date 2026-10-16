@@ -291,29 +291,21 @@ Detailed RCA and resolution steps are documented in [troubleshooting/TROUBLESHOO
 
 All required evaluation screenshots are stored in `session21/screenshots/`:
 
-| # | Filename | Description | Rubric Module |
-|---|---|---|:---:|
-| 01 | `01_frontend_application_ui.png` | OpsPulse web dashboard running locally | M1 |
-| 02 | `02_fastapi_swagger_docs.png` | FastAPI interactive API documentation | M1 |
-| 03 | `03_pytest_passing_output.png` | Pytest 10/10 automated tests passing | M2 |
-| 04 | `04_docker_compose_running.png` | Docker Compose running containers | M4 |
-| 05 | `05_docker_images_list.png` | Local Docker images and tags | M4 |
-| 06 | `06_github_repository_overview.png` | GitHub repository file overview | M3 |
-| 07 | `07_git_commit_history.png` | Git commit history (10+ commits) | M3 |
-| 08 | `08_github_actions_pipeline.png` | GitHub Actions green pipeline run | M5 |
-| 09 | `09_trivy_security_scan.png` | Trivy container vulnerability scan report | M6 |
-| 11 | `11_ghcr_container_registry.png` | Published packages in GHCR | M5 |
-| 12 | `12_terraform_plan_output.png` | `terraform plan` VPC + EKS execution plan | M7 |
-| 13 | `13_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | M7 |
-| 14 | `14_terraform_destroy_output.png` | `terraform destroy` clean teardown | M7 |
-| 15 | `15_k8s_running_pods.png` | `kubectl get all -n opspulse` running pods | M8 |
-| 16 | `16_helm_list_release.png` | `helm list -n opspulse` deployed release | M8 |
-| 17 | `17_k8s_ingress_and_hpa.png` | `kubectl get ingress,hpa -n opspulse` | M8 |
-| 18 | `18_prometheus_metrics_endpoint.png` | Backend `/metrics` Prometheus output | M9 |
-| 19 | `19_prometheus_targets_up.png` | Prometheus Targets dashboard showing UP | M9 |
-| 20 | `20_grafana_monitoring_dashboard.png` | Grafana live telemetry dashboard | M9 |
-| 21 | `21_troubleshooting_investigation.png`| Investigating pod failure with `kubectl` | M10 |
-| 22 | `22_troubleshooting_resolved.png` | Pod restored to Running status | M10 |
+| # | Filename | Description | Status | Rubric Module |
+|---|---|---|:---:|:---:|
+| 01 | [`01_app_dashboard_live.png`](screenshots/01_app_dashboard_live.png) | OpsPulse web dashboard running locally at `localhost:3000` | Verified ✅ | M1 |
+| 02 | [`02_swagger_api_endpoints.png`](screenshots/02_swagger_api_endpoints.png) | FastAPI interactive Swagger documentation (`localhost:8000/docs`) | Verified ✅ | M1 |
+| 03 | [`03_pytest_automated_tests.png`](screenshots/03_pytest_automated_tests.png) | Pytest 10/10 automated tests passing | Verified ✅ | M2 |
+| 04 | [`04_docker_compose_and_images.png`](screenshots/04_docker_compose_and_images.png) | Docker Compose services Up + Docker image sizes | Verified ✅ | M4 |
+| 05 | [`05_git_commit_history.png`](screenshots/05_git_commit_history.png) | Git commit history on `main` | Verified ✅ | M3 |
+| 06 | [`06_github_actions_pipeline_runs.png`](screenshots/06_github_actions_pipeline_runs.png) | GitHub Actions green pipeline run | Verified ✅ | M5 |
+| 07 | [`07_github_actions_jobs_green.png`](screenshots/07_github_actions_jobs_green.png) | CI test and build/scan jobs completed successfully | Verified ✅ | M5 |
+| 08 | [`08_ghcr_container_packages.png`](screenshots/08_ghcr_container_packages.png) | Published container packages in GitHub Container Registry | Verified ✅ | M5 |
+| 09 | [`09_trivy_security_scan_clean.png`](screenshots/09_trivy_security_scan_clean.png) | Trivy container vulnerability scan report (0 vulnerabilities) | Verified ✅ | M6 |
+| 10 | [`10_prometheus_metrics_endpoint.png`](screenshots/10_prometheus_metrics_endpoint.png) | Backend `/metrics` Prometheus telemetry output | Verified ✅ | M9 |
+| 11 | `11_terraform_plan_output.png` | `terraform plan` VPC + EKS execution plan | Ready to run ⏳ | M7 |
+| 12 | `12_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Pending AWS sync ⏳ | M7 |
+| 13 | `13_terraform_destroy_output.png` | `terraform destroy` clean teardown | Pending AWS sync ⏳ | M7 |
 
 ---
 
