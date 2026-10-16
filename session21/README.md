@@ -303,9 +303,11 @@ All required evaluation screenshots are stored in `session21/screenshots/`:
 | 08 | [`08_ghcr_container_packages.png`](screenshots/08_ghcr_container_packages.png) | Published container packages in GitHub Container Registry | Verified ✅ | M5 |
 | 09 | [`09_trivy_security_scan_clean.png`](screenshots/09_trivy_security_scan_clean.png) | Trivy container vulnerability scan report (0 vulnerabilities) | Verified ✅ | M6 |
 | 10 | [`10_prometheus_metrics_endpoint.png`](screenshots/10_prometheus_metrics_endpoint.png) | Backend `/metrics` Prometheus telemetry output | Verified ✅ | M9 |
-| 11 | `11_terraform_plan_output.png` | `terraform plan` VPC + EKS execution plan | Ready to run ⏳ | M7 |
-| 12 | `12_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Pending AWS sync ⏳ | M7 |
-| 13 | `13_terraform_destroy_output.png` | `terraform destroy` clean teardown | Pending AWS sync ⏳ | M7 |
+| 11 | [`11_k8s_running_pods.png`](screenshots/11_k8s_running_pods.png) | `kubectl get pods -n opspulse` showing all backend & postgres pods running | Verified ✅ | M8 |
+| 12 | [`12_helm_list_and_services.png`](screenshots/12_helm_list_and_services.png) | `helm list -n opspulse` deployed release + ClusterIP services | Verified ✅ | M8 |
+| 13 | `13_terraform_plan_output.png` | `terraform plan` VPC + EKS execution plan | Ready to run ⏳ | M7 |
+| 14 | `14_aws_console_eks_vpc.png` | AWS Console showing Active EKS cluster | Pending AWS sync ⏳ | M7 |
+| 15 | `15_terraform_destroy_output.png` | `terraform destroy` clean teardown | Pending AWS sync ⏳ | M7 |
 
 ---
 
