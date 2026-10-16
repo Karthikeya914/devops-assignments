@@ -27,8 +27,8 @@ The `session21/` folder contains:
 3. **`demo/` folder**:
    - 📊 **Presentation Slides** ([`demo/slides.pdf`](demo/slides.pdf))
    - 🎥 **Presentation Video Walkthrough**:
-     - ▶️ **[Recommended] Stream on Google Drive (Full HD)**: [**Watch Full HD Video Walkthrough**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing) *(Instant streaming; recommended due to GitHub's 10MB inline playback limit)*
-     - 💾 **Download Video File (23MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) *(Normal 23MB version)*
+     - ▶️ **[Recommended] Stream on Google Drive (Full HD)**: [**Watch Full HD Video Walkthrough**](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing)
+     - 💾 **Download Video File (45MB)**: [`demo/walkthrough.mp4`](demo/walkthrough.mp4) — *The video is 45MB: if you want you can download and watch it, or if you prefer you can watch it directly using the [Google Drive link](https://drive.google.com/file/d/1NOnK4_MckSleWCE3L1QyyYfYFvX77iYL/view?usp=sharing).*
 
 ---
 
